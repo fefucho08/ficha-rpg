@@ -1,4 +1,23 @@
 .container {
-    color: white;
     text-align: center;
+}
+
+.container h1{
+    margin-bottom: 5px;
+    color: white;
+}
+
+.container button{
+    background-color: #000000;
+    border: 1px solid currentColor;
+    color: #cacaca;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 70%;
+    transition: background-color, transform 0.3s linear;
+}
+
+.container button:hover{
+    background-color: rgba(202, 202, 202, 0.396);
+    transform: scale(1.02);
 }

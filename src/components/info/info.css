@@ -1,0 +1,23 @@
+.box{
+    padding: 20px;
+    border: 1px solid #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    text-align: left;
+}
+
+label{
+    margin-right: 10px;
+}
+
+#personal input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    padding: 5px;
+}
+
+#personal input:focus{
+    outline: none;
+}
