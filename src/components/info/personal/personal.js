@@ -1,20 +1,33 @@
 import '../info.css';
 
+function Dados({info, id}){
+    return(
+        <div>
+            <label htmlFor={id}>{info}: </label>
+            <input
+                autoComplete='off'
+                placeholder={info}
+                id={id}
+            />
+        </div>
+    )
+}
+
 export default function Personal(){
     return(
         <div className="box" id='personal'>
-            <label>Nome:</label>
-            <input
-            placeholder="Nome"
-            ></input>
-            <label>Origem:</label>
-            <input
-            placeholder="Nome"
-            ></input>
-            <label>Classe:</label>
-            <input
-            placeholder="Nome"
-            ></input>
+            <Dados
+            info="Nome"
+            id='nome'
+            />
+            <Dados
+            info="Origem"
+            id='origem'
+            />
+            <Dados
+            info="Classe"
+            id='classe'
+            />
         </div>
     );
 }

@@ -1,14 +1,17 @@
 .box{
     padding: 20px;
     border: 1px solid #ffffff;
-    display: flex;
-    flex-direction: column;
     width: 30%;
     text-align: left;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 label{
     margin-right: 10px;
+    font-size: 110%;
 }
 
 #personal input{
@@ -16,6 +19,7 @@ label{
     border: none;
     border-bottom: 1px solid white;
     padding: 5px;
+    font-size: 110%;
 }
 
 #personal input:focus{
