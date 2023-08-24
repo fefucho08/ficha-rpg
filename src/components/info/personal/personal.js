@@ -32,8 +32,8 @@ export default function Personal(){
     return(
         <div className="box" id='personal'>
             <Dados
-            info="Nome"
-            id='nome'
+            info="Jogador"
+            id='jogador'
             tipo='text'
             />
             <Dados

@@ -1,0 +1,27 @@
+.photoContainer {
+    padding: 20px;
+    text-align: center;
+}
+
+img {
+    background-color: #838383;
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.picture:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.picture input {
+    display: none;
+}
+
+#name {
+    display: block;
+    text-align: center;
+}

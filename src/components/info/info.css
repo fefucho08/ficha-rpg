@@ -1,9 +1,15 @@
+.firstContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
 .box{
     padding: 20px;
     border: 1px solid #ffffff;
-    width: 30%;
+    width: 28%;
     text-align: left;
-    height: 150px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
