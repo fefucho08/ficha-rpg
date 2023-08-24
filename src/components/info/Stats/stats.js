@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Bar from './bar/bar'
+import PopUpMax from './changeMax/changeMax';
+import './stats.css'
 
 export default function Stats(){
     
@@ -7,21 +9,37 @@ export default function Stats(){
     const [sanMax, setSanMax] = useState(10);
     const [peMax, setPeMax] = useState(10);
 
+    let popUp = false;
+
+    function changePop(){
+        popUp = true;
+        if(popUp){
+            return (
+                <PopUpMax/>
+            )
+        }
+        else{
+
+        }
+    }
+
     return(
         <div className="box">
             <Bar
             max={vidaMax}
-            tipo='vida'
+            tipo='PV'
             />
             <Bar
             max={sanMax}
-            tipo='san'
+            tipo='San'
             />
             <Bar
             max={peMax}
             tipo='PE'
             />
-            <button>Editar</button>
+            <button
+            onClick={changePop}
+            >Editar</button>
         </div>
     )
 }

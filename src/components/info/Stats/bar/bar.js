@@ -12,6 +12,7 @@ export default function Bar({max, tipo}){
                     width: `${(atual/max)*100}%`
                 }}></div>
                 <span className='status'>
+                    <span>{tipo}: </span>
                     <input
                     value={atual}
                     onChange={(e) => setAtual(e.target.value)}/>
