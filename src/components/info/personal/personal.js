@@ -1,7 +1,16 @@
 import '../info.css';
+import {useState} from 'react';
 
 function Dados({info, id, tipo}){
 
+    const [classe, setClasse] = useState('notFilled');
+
+    function changeClasse(content){
+        if(content !=='') 
+            setClasse('filled')
+        else
+            setClasse('notFilled')
+    }
 
     return(
         <div className='inputContainer'>
@@ -11,6 +20,8 @@ function Dados({info, id, tipo}){
                 placeholder={info}
                 id={id}
                 type={tipo}
+                className={classe}
+                onChange={(e) => changeClasse(e.target.value)}
             />
         </div>
     )
