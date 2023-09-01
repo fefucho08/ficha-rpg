@@ -12,6 +12,11 @@ img {
     object-fit: cover;
 }
 
+.picture {
+    width: 150px;
+    margin: 0 auto;
+}
+
 .picture:hover{
     cursor: pointer;
     opacity: 0.8;
