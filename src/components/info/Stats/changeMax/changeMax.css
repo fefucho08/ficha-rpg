@@ -1,12 +1,45 @@
+.changeDefault{
+    color: #000000 !important;
+    margin-top: 10px;
+}
+
 .popUp{
     position: absolute;
     z-index: 1000;
-    width: 300px;
-    height: 200px;
-    background-color: red;
+    width: 400px;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: #ffffff;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     margin: auto;
+    text-align: center;
+    color: #000000;
+    padding: 20px;
+}
+
+.popUp span{
+    color: #000000;
+    cursor: pointer;
+    float: right;
+}
+
+.popUp span svg {
+    fill: #000000 !important;
+}
+
+.inputMax {
+    color: #000000 !important;
+    border: none;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    text-align: center;
+    font-size: 110%;
+    width: 80px;
+}
+
+.changeDefault h2{
+    font-size: 80%;
 }

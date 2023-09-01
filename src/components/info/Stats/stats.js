@@ -5,23 +5,23 @@ import './stats.css'
 
 export default function Stats(){
     
+    const [popUp, setPopUp] = useState(false);
+
     const [vidaMax, setVidaMax] = useState(10);
     const [sanMax, setSanMax] = useState(10);
     const [peMax, setPeMax] = useState(10);
 
-    let popUp = false;
-
-    function changePop(){
-        popUp = true;
-        if(popUp){
-            return (
-                <PopUpMax/>
-            )
-        }
-        else{
-
-        }
+    const variables = {
+        Vida: vidaMax,
+        San: sanMax,
+        Pe: peMax,
     }
+    
+    const methods = {
+        Vida: setVidaMax,
+        San: setSanMax,
+        Pe: setPeMax
+    };
 
     return(
         <div className="box">
@@ -38,8 +38,12 @@ export default function Stats(){
             tipo='PE'
             />
             <button
-            onClick={changePop}
+            className='editButton'
+            onClick={() =>{
+                setPopUp(true);
+            }}
             >Editar</button>
+            <PopUpMax trigger={popUp} setTrigger={setPopUp} setVars={methods} variables={variables}/>
         </div>
     )
 }

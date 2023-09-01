@@ -1,5 +1,18 @@
-.box button {
+.editButton {
     width: 50px;
     margin: 0 auto;
-    color: black;
+    background-color: transparent;
+    color: #fff;
+    padding: 5px;
+    border: 1px solid #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 60%;
+    border-radius: 2px;
+    transition: 0.5s ease-in-out;
+}
+
+.editButton:hover{
+    opacity: 0.8;
+    transform: scale(1.02);
 }
