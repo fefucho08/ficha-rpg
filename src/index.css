@@ -20,3 +20,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.popUp{
+  position: absolute;
+  z-index: 1000;
+  width: 400px;
+  height: fit-content;
+  border-radius: 5px;
+  background-color: #ffffff;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  color: #000000;
+  padding: 20px;
+}
+
+.popUp span{
+  color: #000000;
+  cursor: pointer;
+  float: right;
+}
+
+.popUp span svg {
+  fill: #000000 !important;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff5e;
+  border-radius: 10px;
+}
