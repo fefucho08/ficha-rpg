@@ -22,7 +22,7 @@ code {
 }
 
 .popUp{
-  position: absolute;
+  position: fixed;
   z-index: 1000;
   width: 400px;
   height: fit-content;

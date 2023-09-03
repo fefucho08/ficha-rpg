@@ -145,5 +145,14 @@
 }
 
 .popUp h3 {
+    color: #000;
     font-size: 200%;
+}
+
+.disaster {
+    color: red;
+}
+
+.critical {
+    color: green;
 }

@@ -4,6 +4,9 @@ let result;
 var rolls = [];
 
 function Pop({setTrigger, name, extreme}){
+
+
+
     return (
         <div className="popUp">
             <span
@@ -14,7 +17,7 @@ function Pop({setTrigger, name, extreme}){
                 <FaRegTimesCircle/>
             </span>
             <h2>Rolagem de {name}</h2>
-            <h3 className={extreme}>{result}</h3>
+            <h3>{result}</h3>
             <p>Seus resultados foram: {rolls.join(", ")}</p>
         </div>
     )
@@ -30,6 +33,7 @@ export default function TestRoll({trigger, setTrigger, name, value, bonus}){
         rolls = [];
 
         if(value > 0){
+
             for(let i = 0; i < value; i ++){
                 let roll = Math.floor(Math.random() * 20) + 1
                 rolls.push(roll);
