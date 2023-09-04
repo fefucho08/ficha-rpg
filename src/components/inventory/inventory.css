@@ -1,0 +1,22 @@
+.containerInv {
+    width: 43%;
+    height: 313px;
+    border: 1px solid #fff;
+    padding: 10px 10px;
+    align-items: center;
+}
+
+.containerInv h2 {
+    color: #fff;
+    text-align: center;
+}
+
+.item {
+    height: fit-content;
+    width: 100%;
+    padding: 5px 20px;
+    color: #fff;
+    box-sizing: border-box;
+    border-bottom: 1px solid #454545;
+    border-radius: 5px;
+}

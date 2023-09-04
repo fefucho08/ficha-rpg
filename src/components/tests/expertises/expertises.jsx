@@ -35,9 +35,9 @@ function SingularExpertise({expertiseName, setExp, roll, expertises, index, attr
         let bonus = expertises[index].value;
 
         let agilidade = ["Acrobacia", "Crime", "Furtividade", "Iniciativa", "Pilotagem","Pontaria", "Reflexos"];
-        let intelecto = ["Atualidades", "Ciencias", "Investigacao", "Medicina", "Ocultismo", "Profisso", "Sobrevivencia", "Tatica", "Tecnologia"];
+        let intelecto = ["Atualidades", "Ciências", "Investigação", "Medicina", "Ocultismo", "Profissão", "Sobrevivência", "Tática", "Tecnologia"];
         let vigor = ["Fortitude"];
-        let presenca = ["Adestramento", "Artes", "Diplomacia", "Enganacao", "Intimidacao", "Intuicao", "Percepcao", "Religiao", "Vontade"];
+        let presenca = ["Adestramento", "Artes", "Diplomacia", "Enganação", "Intimidação", "Intuição", "Percepção", "Religião", "Vontade"];
         let forca = ["Atletismo", "Luta"];
 
         if(agilidade.find(e => e === expertiseName))
@@ -87,20 +87,21 @@ function SingularExpertise({expertiseName, setExp, roll, expertises, index, attr
 
 
 export default function Expertises({expertises, roll, attributes}){
-var componentsArr = [];
+    var componentsArr = [];
 
-for(let i = 0; i < 28; i++){
-    componentsArr.push(
-    <SingularExpertise
-    expertiseName = {expertises[i].name}
-    expertiseBonus = {expertises[i].value}
-    setExp = {expertises[i].method}
-    expertises = {expertises}
-    index = {i}
-    roll = {roll}
-    attributes={attributes}
-    />)
-}
+    for(let i = 0; i < 28; i++){
+        componentsArr.push(
+        <SingularExpertise
+        expertiseName = {expertises[i].name}
+        expertiseBonus = {expertises[i].value}
+        setExp = {expertises[i].method}
+        expertises = {expertises}
+        index = {i}
+        roll = {roll}
+        attributes={attributes}
+        />)
+    }
+    
     return (
         <div className="containerAtt">
             <h2>Perícias</h2>

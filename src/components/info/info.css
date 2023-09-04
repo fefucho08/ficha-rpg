@@ -48,6 +48,10 @@ input[type=number]::-webkit-outer-spin-button{
     color: #ffffff;
 }
 
+.inputContainer:last-of-type input{
+    text-align: right;
+}
+
 .filled {
     border-bottom: none;
     background-color: transparent;

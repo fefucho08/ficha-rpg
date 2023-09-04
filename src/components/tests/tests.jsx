@@ -16,33 +16,29 @@ export default function Tests(){
         {
             name: "Agilidade",
             value: agilidade,
+            method: setAgilidade,
         },
         {
             name: "Intelecto",
             value: intelecto,
+            method: setIntelecto,
         },
         {
             name: "Vigor",
             value: vigor,
+            method: setVigor,
         },
         {
             name: "Presenca",
             value: presenca,
+            method: setPresenca,
         },
         {
             name: "Forca",
             value: forca,
+            method: setForca,
         },
-    ]
-    ;
-
-    const setAttributes = {
-        Agilidade: setAgilidade,
-        Intelecto: setIntelecto,
-        Vigor: setVigor,
-        Presenca: setPresenca,
-        Forca: setForca,
-    }
+    ];
 
     // USESTATES DOS BONUS PERICIAS
     const [acrobacia, setAcrobacia] = useState(0);
@@ -102,7 +98,7 @@ export default function Tests(){
             method: setAtualidades,
         },
         {
-            name: 'Ciencias',
+            name: 'Ciências',
             value: ciencias,
             method: setCiencias,
         },
@@ -117,7 +113,7 @@ export default function Tests(){
             method: setDiplomacia,
         },
         {
-            name: 'Enganacao',
+            name: 'Enganação',
             value: enganacao,
             method: setEnganacao,
         },
@@ -137,17 +133,17 @@ export default function Tests(){
             method: setIniciativa,
         },
         {
-            name: 'Intimidacao',
+            name: 'Intimidação',
             value: intimidacao,
             method: setIntimidacao,
         },
         {
-            name: 'Intuicao',
+            name: 'Intuição',
             value: intuicao,
             method: setIntuicao,
         },
         {
-            name: 'Investigacao',
+            name: 'Investigação',
             value: investigacao,
             method: setInvestigacao,
         },
@@ -167,7 +163,7 @@ export default function Tests(){
             method: setOcultismo,
         },
         {
-            name: 'Percepcao',
+            name: 'Percepção',
             value: percepcao,
             method: setPercepcao,
         },
@@ -182,7 +178,7 @@ export default function Tests(){
             method: setPontaria,
         },
         {
-            name: 'Profissao',
+            name: 'Profissão',
             value: profissao,
             method: setProfissao,
         },
@@ -192,17 +188,17 @@ export default function Tests(){
             method: setReflexos,
         },
         {
-            name: 'Religiao',
+            name: 'Religião',
             value: religiao,
             method: setReligiao,
         },
         {
-            name: 'Sobrevivencia',
+            name: 'Sobrevivência',
             value: sobrevivencia,
             method: setSobrevivencia,
         },
         {
-            name: 'Tatica',
+            name: 'Tática',
             value: tatica,
             method: setTatica,
         },
@@ -237,7 +233,6 @@ export default function Tests(){
 
             <Attributes 
             attributes={attributes} 
-            setAttributes = {setAttributes}
             roll = {roll}
             />
 

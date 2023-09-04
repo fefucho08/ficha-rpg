@@ -100,7 +100,7 @@
 }
 
 .d20 {
-    width: 20px;
+    width: 30px;
     transition: ease-in-out;
     cursor: pointer;
 }
