@@ -1,11 +1,10 @@
 import { FaRegTimesCircle } from 'react-icons/fa';
+import '../tests.css'
 
 let result;
 var rolls = [];
 
-function Pop({setTrigger, name, extreme}){
-
-
+function Pop({setTrigger, name}){
 
     return (
         <div className="popUp">

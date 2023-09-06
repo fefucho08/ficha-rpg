@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Attributes from "./attributes/attributes"
 import TestRoll from "./roll/testRoll";
 import Expertises from "./expertises/expertises"
 
-export default function Tests(){
+export default function Tests(props){
     
     // USESTATES DOS ATRIBUTOS
     const [agilidade, setAgilidade] = useState(1);
@@ -39,6 +39,11 @@ export default function Tests(){
             method: setForca,
         },
     ];
+
+
+    useEffect(() => {
+        props.setStr(forca)
+    }, [forca, props])
 
     // USESTATES DOS BONUS PERICIAS
     const [acrobacia, setAcrobacia] = useState(0);

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import D20 from '../../../imagens/d20.png'
 import '../tests.css'
 
@@ -6,10 +6,13 @@ function SingularAttribute({attribute, roll}){
 
     const [value, setValue] = useState(1);
 
+
+    useEffect(() => {
+        localStorage.setItem(attribute.name, value)
+    }, [value, attribute.name])
+
     return(
-        <div 
-        className='boxAtt'
-        >
+        <div className='boxAtt'>
             <img 
             src={D20} 
             alt='d20' 
