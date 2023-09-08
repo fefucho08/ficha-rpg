@@ -3,6 +3,8 @@ import Attributes from "./attributes/attributes"
 import TestRoll from "./roll/testRoll";
 import Expertises from "./expertises/expertises"
 
+
+
 export default function Tests(props){
     
     // USESTATES DOS ATRIBUTOS
@@ -39,7 +41,6 @@ export default function Tests(props){
             method: setForca,
         },
     ];
-
 
     useEffect(() => {
         props.setStr(forca)
@@ -260,3 +261,4 @@ export default function Tests(props){
         </div>
     )
 }
+

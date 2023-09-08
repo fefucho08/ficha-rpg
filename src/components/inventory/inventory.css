@@ -119,3 +119,74 @@
 .fillWarning p, .fillWarning svg {
     display: inline;
 }
+
+.weaponsHeader {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    margin-top: 20px;
+    padding: 5px 20px;
+}
+
+
+.weaponsHeader input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 20%;
+    text-align: center;
+    font-size: 105%;
+    text-decoration: underline;
+}
+
+.weaponsHeader input:first-of-type {
+    width: 30%;
+    text-align: start;
+}
+
+.weapon {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #fff;
+}
+
+.weapon input{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 20%;
+    text-align: center;
+    font-size: 85%;
+}
+
+.weapon input:first-of-type {
+    width: 30%;
+    text-align: start;
+}
+
+.addWeapon div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.addWeapon input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 10px;
+    width: 80%;
+    outline: none;
+    color: #000;
+}
+
+.testInput:hover, 
+.damageInput:hover {
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+}

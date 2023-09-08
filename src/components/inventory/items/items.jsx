@@ -41,7 +41,7 @@ export default function Items(props){
 
     useEffect(() =>{
         const sum = items.reduce((total, item) => total +  parseInt(item.space), 0);
-        setSpaceUsed(sum)
+        setSpaceUsed(sum);
     }, [items])
 
 
