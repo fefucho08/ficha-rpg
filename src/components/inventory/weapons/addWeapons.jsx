@@ -1,6 +1,7 @@
 import { useState } from "react"
+import { FaRegTimesCircle } from "react-icons/fa"
 
-export default function AddWeapons({addWeapon, setTrigger}) {
+export default function AddWeapons({addWeapon, isAdding}) {
     const [name, setName] = useState("")
     const [test, setTest] = useState("")
     const [damage, setDamage] = useState("")
@@ -8,6 +9,9 @@ export default function AddWeapons({addWeapon, setTrigger}) {
 
     return (
         <div className="popUp addWeapon">
+            <span onClick={() => isAdding(false)}>
+                <FaRegTimesCircle/>
+            </span>
             <h1>Adicionar Arma</h1>
 
             <div>
@@ -36,9 +40,11 @@ export default function AddWeapons({addWeapon, setTrigger}) {
                 onChange={(e) => setRange(e.target.value)}
                 />
                 <button onClick={() =>{
-                    addWeapon(name, null , test, damage, range)
-                    setTrigger(false)
-                }}>Fechar</button>
+                    if(name !== "" && test !== "" && damage !== "" && range !== ""){
+                        addWeapon(name, null , test, damage, range)
+                        isAdding(false)
+                    }
+                }}>Salvar</button>
 
             </div>
         </div>

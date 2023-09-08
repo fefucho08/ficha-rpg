@@ -1,42 +1,27 @@
 import { useState } from 'react'
 import AddWeapons from './addWeapons';
+import TestWeapon from './roll/weaponTestRolls';
+import {FaTrashAlt} from 'react-icons/fa'
 import '../inventory.css'
 
-function SingularWeapon({name, test, damage, range}){
+function SingularWeapon({name, test, damage, range, isTesting, setTest, setTestName, deleteWeapon, id}){
 
-    const attackWeapon = (test) => {
-        if(test.includes("d")){
-            const numbers = test.split("d");
-            const multiplier = parseInt(numbers[0]);
-            const dice = parseInt(numbers[1]);
-    
-            var rolls = []
-            
-    
-            if(isNaN(multiplier) || isNaN(dice))
-                alert("Inválido");
-            else {
-                for(let i = 0; i < multiplier; i++){
-                    let newRoll = Math.floor(Math.random() * dice) + 1
-                    rolls.push(newRoll)
-                }
-                const result = Math.max(...rolls);
-                alert(rolls)
-                alert(result)
-            }
-        }else{
-            alert("Digite da maneira correta!")
-        }
-        
-        
+
+    const rollTest = () => {
+        setTestName(name)
+        setTest(test)
+        isTesting(true)
     }
     
     return(
         <div className='weapon'>
             <input value={name} readOnly/>
-            <input value={test} readOnly className='testInput' onClick={() => attackWeapon(test)}/>
+            <input value={test} readOnly className='testInput' onClick={() => rollTest(test)}/>
             <input value={damage} readOnly className='damageInput'/>
             <input value={range} readOnly/>
+            <span onClick={() => deleteWeapon(id)}>
+                <FaTrashAlt/>
+            </span>
         </div>
     )
 }
@@ -45,7 +30,13 @@ export default function Weapons(){
 
     const [weapons, setWeapons] = useState([]);
 
-    const [trigger, setTrigger] = useState(false);
+    const [adding, isAdding] = useState(false);
+    
+    const [testing, isTesting] = useState(false)
+
+    const [test, setTest] = useState("")
+
+    const [testName, setTestName] = useState("")
 
     const addWeapon = (weapon, space, test, damage, range, critical) => {
 
@@ -63,11 +54,20 @@ export default function Weapons(){
 
     }
 
+    const deleteWeapon = (id) => {
+        
+        if(window.confirm("Deseja remover essa arma?")){
+            const newWeapons = weapons.filter((weapon) => weapon.id !== id);
+
+            setWeapons(newWeapons);
+        }
+    }
+
     return(
         <div className="containerInv">
             <div className='invHeader'>
                 <h2>Armas</h2>
-                <button onClick={() => setTrigger(true)}>+</button>
+                <button onClick={() => isAdding(true)}>+</button>
             </div>
             
             <header className='weaponsHeader'>
@@ -75,6 +75,7 @@ export default function Weapons(){
                 <input value="Teste" readOnly/>
                 <input value="Dano" readOnly/>
                 <input value="Alcance" readOnly/>
+                <input value="" readOnly/>
             </header>
 
             {weapons.map((weapon) => (
@@ -85,11 +86,21 @@ export default function Weapons(){
                 damage = {weapon.damage}
                 range = {weapon.range}
                 space = {weapon.space}
+                isTesting = {isTesting}
+                setTest = {setTest}
+                setTestName = {setTestName}
+                deleteWeapon = {deleteWeapon}
+                id = {weapon.id}
                 />
             ))}
             
 
-            {trigger && <AddWeapons addWeapon={addWeapon} setTrigger={setTrigger}/>}
+            {adding && <AddWeapons addWeapon={addWeapon} isAdding={isAdding}/>}
+            {testing && <TestWeapon
+            isTesting={isTesting}
+            name = {testName}
+            test={test}
+            />}
         </div>
     )
 }
