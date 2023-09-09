@@ -1,23 +1,32 @@
 import { useState } from 'react'
 import AddWeapons from './addWeapons';
 import TestWeapon from './roll/weaponTestRolls';
+import { DamageRoll } from './roll/weaponTestRolls';
 import {FaTrashAlt} from 'react-icons/fa'
 import '../inventory.css'
 
-function SingularWeapon({name, test, damage, range, isTesting, setTest, setTestName, deleteWeapon, id}){
+function SingularWeapon({name, test, damage, critical, range, isTesting, isRollingDamage, setTest, setTestName, setDamage, setCritical, deleteWeapon, id}){
 
 
     const rollTest = () => {
         setTestName(name)
         setTest(test)
+        setDamage(damage)
+        setCritical(critical)
         isTesting(true)
     }
     
+    const rollDamage = () => {
+        setTestName(name)
+        setDamage(damage)
+        isRollingDamage(true)
+    }
+
     return(
         <div className='weapon'>
             <input value={name} readOnly/>
-            <input value={test} readOnly className='testInput' onClick={() => rollTest(test)}/>
-            <input value={damage} readOnly className='damageInput'/>
+            <input value={test} readOnly className='testInput' onClick={() => rollTest()}/>
+            <input value={damage} readOnly className='damageInput' onClick={() => rollDamage()}/>
             <input value={range} readOnly/>
             <span onClick={() => deleteWeapon(id)}>
                 <FaTrashAlt/>
@@ -26,23 +35,28 @@ function SingularWeapon({name, test, damage, range, isTesting, setTest, setTestN
     )
 }
 
-export default function Weapons(){
+export default function Weapons({items, setItems, weapons, setWeapons}){
 
-    const [weapons, setWeapons] = useState([]);
 
     const [adding, isAdding] = useState(false);
     
     const [testing, isTesting] = useState(false)
 
+    const [rollingDamage, isRollingDamage] = useState(false)
+
     const [test, setTest] = useState("")
 
     const [testName, setTestName] = useState("")
+
+    const [damage, setDamage] = useState("")
+
+    const [critical, setCritical] = useState("")
 
     const addWeapon = (weapon, space, test, damage, range, critical) => {
 
         const newWeapon = {
             id: Math.random(),
-            weapon: weapon,
+            item: weapon,
             space: space,
             test: test,
             damage: damage,
@@ -51,6 +65,7 @@ export default function Weapons(){
         }
 
         setWeapons([...weapons, newWeapon])
+        setItems([...items, newWeapon])
 
     }
 
@@ -58,8 +73,10 @@ export default function Weapons(){
         
         if(window.confirm("Deseja remover essa arma?")){
             const newWeapons = weapons.filter((weapon) => weapon.id !== id);
+            const newItems = items.filter((item) => item.id !== id)
 
             setWeapons(newWeapons);
+            setItems(newItems);
         }
     }
 
@@ -81,14 +98,18 @@ export default function Weapons(){
             {weapons.map((weapon) => (
                 <SingularWeapon
                 key = {weapon.id}
-                name = {weapon.weapon}
+                name = {weapon.item}
                 test = {weapon.test}
                 damage = {weapon.damage}
                 range = {weapon.range}
                 space = {weapon.space}
+                critical = {weapon.critical}
                 isTesting = {isTesting}
+                isRollingDamage = {isRollingDamage}
                 setTest = {setTest}
                 setTestName = {setTestName}
+                setDamage = {setDamage}
+                setCritical = {setCritical}
                 deleteWeapon = {deleteWeapon}
                 id = {weapon.id}
                 />
@@ -100,6 +121,16 @@ export default function Weapons(){
             isTesting={isTesting}
             name = {testName}
             test={test}
+            damage={damage}
+            critical={critical}
+            isRollingDamage = {isRollingDamage}
+            setTestName = {setTestName}
+            setDamage = {setDamage}
+            />}
+            {rollingDamage && <DamageRoll
+            isRollingDamage = {isRollingDamage}
+            name={testName}
+            damage={damage}
             />}
         </div>
     )

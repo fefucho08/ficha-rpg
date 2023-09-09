@@ -39,6 +39,10 @@ code {
   box-shadow: #fff 0px 0px 15px;
 }
 
+.popUp h2 {
+  clear: both;
+}
+
 .popUp span{
   color: #000000;
   cursor: pointer;
