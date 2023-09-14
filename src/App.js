@@ -3,6 +3,7 @@ import Header from './components/header/header';
 import Info from './components/info/info'
 import Tests from './components/tests/tests';
 import Inventory from './components/inventory/inventory';
+import Rituals from './components/rituals/rituals';
 import { useState } from 'react';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Info/>
       <Tests setStr = {setStr}/>
       <Inventory str = {Str}/>
+      <Rituals/>
     </div>
   );
 }
