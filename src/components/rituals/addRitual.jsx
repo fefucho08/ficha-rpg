@@ -67,6 +67,7 @@ export default function NewRitual(props) {
                 <option value="Padrão">Padrão</option>
                 <option value="Completa">Completa</option>
                 <option value="Livre">Livre</option>
+                <option value="Reação">Reação</option>
             </select>
             <select value={range} onChange={(e) => setRange(e.target.value)} className={range ? "selected" : ""} id="range">
                 <option value="">Alcance:</option>
