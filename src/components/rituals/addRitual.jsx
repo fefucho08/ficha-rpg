@@ -22,7 +22,7 @@ export default function NewRitual(props) {
         const ehVazio = param.some(param => param === "")
 
         if(ehVazio){
-            toast.error("É necessário preencher todas as informações!")
+            toast.error("É necessário preencher todos os campos!")
         } else {
             const newRitual = {
                 id: Math.random(),

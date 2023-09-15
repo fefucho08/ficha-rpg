@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaRegTimesCircle } from 'react-icons/fa';
 
 
@@ -23,7 +24,7 @@ const validator = (test) => {
         }
 
         if(isNaN(multiplier) || isNaN(dice) || isNaN(bonus)){
-            alert("Valores inválidos")
+            toast.error("Valores inválidos!")
             return false
         } else{
             const testInformation = {
@@ -36,7 +37,7 @@ const validator = (test) => {
         }
                 
     }else{
-        alert("Digite da maneira correta")
+        toast.error("Digite da maneira correta!")
         return false
     }
 }

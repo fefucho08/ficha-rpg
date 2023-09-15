@@ -1,4 +1,5 @@
 import { useState } from "react"
+import toast from "react-hot-toast"
 import { FaRegTimesCircle } from "react-icons/fa"
 
 export default function AddWeapons({addWeapon, isAdding}) {
@@ -57,6 +58,8 @@ export default function AddWeapons({addWeapon, isAdding}) {
                     if(name !== "" && test !== "" && damage !== "" && range !== ""){
                         addWeapon(name, space , test, damage, range, critical)
                         isAdding(false)
+                    }else{
+                        toast.error("É necessário preencher todos os campos!")
                     }
                 }}>Salvar</button>
 
