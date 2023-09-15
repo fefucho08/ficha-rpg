@@ -1,35 +1,7 @@
 import '../tests.css'
 import D20 from '../../../imagens/d20.png'
-import {useState } from 'react';
 
 function SingularExpertise({expertiseName, setExp, roll, expertises, index, attributes}){
-
-    const [hover, setHover] = useState("Nenhum");
-
-    const changeBonus = (e) => {
-        if(e.target.value === null)
-            setHover("Nenhum");
-        else
-            setHover(e.target.value)
-
-        switch(e.target.value){
-            case ("Nenhum"):
-                setExp(0);
-                break;
-            case ("Treinado"):
-                setExp(5);
-                break;
-            case ("Veterano"):
-                setExp(10);
-                break;
-            case ("Expert"):
-                setExp(15);
-                break;
-            default:
-                setExp(0);
-                break;
-        }
-    }
 
     const rollExp = () => {
         let bonus = expertises[index].value;
@@ -57,14 +29,6 @@ function SingularExpertise({expertiseName, setExp, roll, expertises, index, attr
     return(
         <div className='boxExp'>
 
-            <datalist id='treinamento'>
-                <option value='Nenhum'></option>
-                <option value="Treinado"></option>
-                <option value="Veterano"></option>
-                <option value="Expert"></option>
-            </datalist>
-
-
             <img
             onClick={() => rollExp()}
             src={D20}
@@ -72,19 +36,15 @@ function SingularExpertise({expertiseName, setExp, roll, expertises, index, attr
             className='d20'
             />
             <p>{expertiseName}</p>
-            <input
-            onChange={(e) => {
-                changeBonus(e)
-            }}
-            onClick={() => setHover("")}
-            value = {hover}
-            className='inputTreinamento'
-            list='treinamento'
-            />
+            <select className='inputTreinamento' onChange={(e) => setExp(parseInt(e.target.value))}>
+                <option value="0">Nenhum</option>
+                <option value="5">Treinado</option>
+                <option value="10">Veterano</option>
+                <option value="15">Expert</option>
+            </select>
         </div>
     )
 }
-
 
 export default function Expertises({expertises, roll, attributes}){
     var componentsArr = [];
