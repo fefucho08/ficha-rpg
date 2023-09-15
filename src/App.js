@@ -5,6 +5,7 @@ import Tests from './components/tests/tests';
 import Inventory from './components/inventory/inventory';
 import Rituals from './components/rituals/rituals';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <div className="App">
+      <Toaster position='top-center'/>
       <Header/>
       <Info/>
       <Tests setStr = {setStr}/>

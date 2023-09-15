@@ -1,4 +1,4 @@
-import './foto.css'
+import './photo.css'
 import Photo from '../../../imagens/fotoNaoDefinida.png'
 import { useState } from 'react';
 

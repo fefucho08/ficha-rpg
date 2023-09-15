@@ -1,5 +1,5 @@
 import Personal from './personal/personal';
-import Foto from './Foto/foto';
+import Foto from './photo/photo';
 import Stats from './Stats/stats';
 import './info.css';
 

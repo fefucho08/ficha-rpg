@@ -6,6 +6,7 @@ import Medo from '../../imagens/Medo.png'
 import Conhecimento from '../../imagens/Conhecimento.png'
 import './rituals.css'
 import NewRitual from './addRitual'
+import RemoveRituals from './removeRituals'
 
 function SingularRitual(props){
 
@@ -60,6 +61,8 @@ export default function Rituals(){
 
     const [addingRitual, isAddingRitual] = useState(false)
 
+    const [deletingRituals, isDeletingRituals] = useState(false)
+
     const [ritualsList, setRitualsList] = useState([])
 
 
@@ -69,6 +72,7 @@ export default function Rituals(){
                 <div className='ritualsContainerHeader'>
                     <h2>Rituais</h2>
                     <button onClick={() => isAddingRitual(true)}>+</button>
+                    <button onClick={() => isDeletingRituals(true)}>-</button>
                 </div>
                 {ritualsList.map((ritual) => (
                     <SingularRitual
@@ -85,7 +89,9 @@ export default function Rituals(){
                     />
                 ))}
             </div>
-            {addingRitual && <NewRitual isAddingRitual={isAddingRitual} ritualsList={ritualsList} setRitualsList={setRitualsList}/>}
+        {addingRitual && <NewRitual isAddingRitual={isAddingRitual} ritualsList={ritualsList} setRitualsList={setRitualsList}/>}
+        {deletingRituals && <RemoveRituals isDeletingRituals={isDeletingRituals} ritualsList={ritualsList} setRitualsList={setRitualsList}/>}
+
         </>
     )
 }
