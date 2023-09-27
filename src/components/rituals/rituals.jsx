@@ -71,8 +71,8 @@ export default function Rituals(){
             <div className="ritualsContainer">
                 <div className='ritualsContainerHeader'>
                     <h2>Rituais</h2>
-                    <button onClick={() => isAddingRitual(true)}>+</button>
-                    <button onClick={() => isDeletingRituals(true)}>-</button>
+                    <button onClick={() => isAddingRitual(true)}  className='addButton'>+</button>
+                    <button onClick={() => isDeletingRituals(true)} className='removeButton'>-</button>
                 </div>
                 {ritualsList.map((ritual) => (
                     <SingularRitual

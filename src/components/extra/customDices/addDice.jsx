@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { FaRegTimesCircle } from "react-icons/fa"
+import toast from "react-hot-toast"
 
 export default function AddNewDice(props){
     const {savedDices, setSavedDices, isAdding} = props
@@ -11,6 +12,9 @@ export default function AddNewDice(props){
 
     const addDice = (name, value, symbol, isDamage) => {
         
+        if(value === "")
+            toast.error("Preencha o campo de dados")
+
         if(name === "")
             name = value
     
@@ -19,9 +23,11 @@ export default function AddNewDice(props){
             value: value,
             symbol: symbol,
             isDamage: isDamage,
+            id: Math.random(),
         }
 
         setSavedDices([...savedDices, newDice])
+        isAdding(false)
     }
 
     return (
@@ -41,6 +47,7 @@ export default function AddNewDice(props){
             </select>
             <label htmlFor="diceName">Nome(Opcional)</label>
             <input
+                maxLength={15}
                 type="text"
                 id="diceName"
                 value={diceName}
@@ -53,13 +60,16 @@ export default function AddNewDice(props){
                 value={diceValue}
                 onChange={(e) => setDiceValue(e.target.value)}
             />
-            <label htmlFor="isDamage">Rolar como dano (somar dados)</label>
-            <input
-                id="isDamage" 
-                type="checkbox" 
-                value={isDamage}
-                onChange={() => changeIsDamage(!isDamage)}
-            />
+            <label className="switch">
+                <input
+                    id="isDamage" 
+                    type="checkbox" 
+                    value={isDamage}
+                    onChange={() => changeIsDamage(!isDamage)}
+                />
+                <span className="slider"/>
+            </label>
+            <label htmlFor="isDamage" style={{fontSize: 'smaller'}}>Rolar como dano (soma todos os dados)</label>
             <button
                 onClick={() => addDice(diceName, diceValue, diceSymbol, isDamage)}
             >Salvar</button>

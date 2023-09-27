@@ -8,6 +8,7 @@ import D12 from '../../../imagens/d12.png'
 import D20 from '../../../imagens/d20.png'
 import CustomDiceRoll from './diceRoll'
 import AddNewDice from './addDice'
+import RemoveDices from './removeDice'
 import '../extra.css'
 
 function SingularDice(props){
@@ -60,6 +61,7 @@ export default function CustomDices(){
 
     const [rolling, isRolling] = useState(false)
     const [adding, isAdding] = useState(false)
+    const [deleting, isDeletingDices] = useState(false)
 
     const [rollValue, setRollValue] = useState("")
     const [rollName, setRollName] = useState("")
@@ -78,6 +80,7 @@ export default function CustomDices(){
                 <div className="customDicesHeader">
                     <h2>Dados Customizados</h2>
                     <button className='addButton' onClick={() => isAdding(true)}>+</button>
+                    <div className="removeButton" onClick={() => isDeletingDices(true)}>-</div>
                 </div>
                 <div className="savedCustomDices">
                     {savedDices.map((dice) => (
@@ -90,6 +93,7 @@ export default function CustomDices(){
                             isRolling={isRolling}
                             setRollName={setRollName}
                             setIsDamage={setIsDamage}
+                            key={dice.id}
                         />
                     ))}
                 </div>
@@ -118,6 +122,13 @@ export default function CustomDices(){
                     savedDices = {savedDices}
                     setSavedDices = {setSavedDices}
                     isAdding = {isAdding}
+                />
+            }
+            {deleting && 
+                <RemoveDices
+                    savedDices = {savedDices}
+                    setSavedDices = {setSavedDices}
+                    isDeletingDices = {isDeletingDices}
                 />
             }
         </>

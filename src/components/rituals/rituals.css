@@ -25,7 +25,7 @@
     width: 100%;
 }
 
-.ritualsContainerHeader button {
+/* .ritualsContainerHeader button {
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
@@ -41,7 +41,7 @@
 .ritualsContainerHeader button:hover {
     scale: 1.05;
     opacity: 0.8;
-}
+} */
 
 .ritualBox {
     width: 45%;
@@ -174,33 +174,6 @@
 .ritualPopUp button {
     display: block;
     margin: 0 auto;
-}
-
-.removeRituals li{
-    text-align: start;
-    margin-bottom: 5px;
-    list-style: none;
-    line-height: 20px;
-}
-
-@font-face {
-    font-family: 'Sigilos';
-    src: url(../../fonts/SigilosDoOutroLado-Regular.ttf);
-}
-
-.removeRituals li::before {
-    content: 'i';
-    display: inline-block;
-    height: 20px;
-    width: 20px;
-    vertical-align: middle;
-    font-size: 25px;
-    font-family: 'Sigilos';
-    text-align: center;
-}
-
-.removeRituals li span svg{
-    float: right;
 }
 
 option[value=""] {

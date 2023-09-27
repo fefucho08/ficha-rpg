@@ -52,6 +52,33 @@ code {
   fill: #000000 !important;
 }
 
+.deletePop li{
+  text-align: start;
+  margin-bottom: 5px;
+  list-style: none;
+  line-height: 20px;
+}
+
+@font-face {
+  font-family: 'Sigilos';
+  src: url(../src/fonts/SigilosDoOutroLado-Regular.ttf);
+}
+
+.deletePop li::before {
+  content: 'i';
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
+  font-size: 25px;
+  font-family: 'Sigilos';
+  text-align: center;
+}
+
+.deletePop li span svg{
+  float: right;
+}
+
 .maxContainer {
   margin-top: 40px;
   display: flex;
@@ -71,9 +98,25 @@ code {
   transition: 0.5s linear;
 }
 
-.addButton:hover {
+.addButton:hover,
+.removeButton:hover {
   opacity: 0.8;
   scale: 1.05;
+}
+
+.removeButton {
+  background-color: transparent;
+  border: 1px solid #cacaca;
+  padding: 5px;
+  cursor: pointer;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s linear;
+  margin: 0 5px;
+  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {

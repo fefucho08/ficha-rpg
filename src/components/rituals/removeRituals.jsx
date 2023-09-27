@@ -10,9 +10,9 @@ export default function RemoveRituals(props){
     }
 
     return(
-        <div className="popUp removeRituals">
+        <div className="popUp deletePop">
             <span onClick={() => isDeletingRituals(false)}><FaRegTimesCircle/></span>
-            <h1>Remover Rituais</h1>
+            <h2>Remover Rituais</h2>
             {ritualsList.length > 0 ? (
                 <ul>
                     {ritualsList.map((ritual) => (
