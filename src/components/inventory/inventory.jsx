@@ -9,7 +9,7 @@ export default function Inventory({str}){
     const [weapons, setWeapons] = useState([]);
 
     return(
-        <div style={{marginTop: '40px', display: 'flex', justifyContent: 'space-between'}}>
+        <div className="maxContainer">
             <Items
             str = {str}
             items = {items}

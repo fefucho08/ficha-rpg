@@ -84,7 +84,7 @@ export default function Weapons({items, setItems, weapons, setWeapons}){
         <div className="containerInv">
             <div className='invHeader'>
                 <h2>Armas</h2>
-                <button onClick={() => isAdding(true)}>+</button>
+                <button onClick={() => isAdding(true)} className='addButton'>+</button>
             </div>
             
             <header className='weaponsHeader'>

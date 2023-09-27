@@ -76,6 +76,7 @@
     filter: invert(1);
 }
 
+
 .ritualHeader {
     display: flex;
     justify-content: space-between;
@@ -155,9 +156,11 @@
 }
 
 .ritualPopUp textarea {
-    resize: none;
+    resize: vertical;
     width: 70%;
     height: 60px;
+    max-height: 150px;
+    min-height: 60px;
     box-sizing: border-box;
     padding: 5px;
     outline: none;
@@ -182,7 +185,7 @@
 
 @font-face {
     font-family: 'Sigilos';
-    src: url(../../SigilosDoOutroLado-Regular.ttf);
+    src: url(../../fonts/SigilosDoOutroLado-Regular.ttf);
 }
 
 .removeRituals li::before {

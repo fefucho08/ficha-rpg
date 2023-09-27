@@ -17,8 +17,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 .popUp{
@@ -51,6 +50,30 @@ code {
 
 .popUp span svg {
   fill: #000000 !important;
+}
+
+.maxContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addButton {
+  background-color: transparent;
+  border: 1px solid #cacaca;
+  padding: 5px;
+  cursor: pointer;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s linear;
+}
+
+.addButton:hover {
+  opacity: 0.8;
+  scale: 1.05;
 }
 
 ::-webkit-scrollbar {

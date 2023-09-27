@@ -4,6 +4,7 @@ import Info from './components/info/info'
 import Tests from './components/tests/tests';
 import Inventory from './components/inventory/inventory';
 import Rituals from './components/rituals/rituals';
+import Extra from './components/extra/extra';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 
@@ -19,6 +20,7 @@ function App() {
       <Tests setStr = {setStr}/>
       <Inventory str = {Str}/>
       <Rituals/>
+      <Extra/>
     </div>
   );
 }

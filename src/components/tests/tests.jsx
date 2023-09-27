@@ -235,7 +235,7 @@ export default function Tests(props){
     }
 
     return (
-        <div style={{marginTop: '40px', display: 'flex', justifyContent: 'space-between'}}>
+        <div className="maxContainer">
 
             <Attributes 
             attributes={attributes} 

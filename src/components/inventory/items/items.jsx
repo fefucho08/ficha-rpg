@@ -75,6 +75,7 @@ export default function Items({items, setItems, weapons, setWeapons, str}){
                 <p style={{color: "white"}}>{space}/{spaceMax}</p>
                 <button
                 onClick={() => setTrigger(true)}
+                className="addButton"
                 >+</button>
             </div>
             
