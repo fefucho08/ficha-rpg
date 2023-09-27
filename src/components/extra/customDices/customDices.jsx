@@ -1,20 +1,54 @@
 import { useState } from 'react'
 import {BiSend} from 'react-icons/bi'
+import D4 from '../../../imagens/d4.png'
+import D6 from '../../../imagens/d6.png'
+import D8 from '../../../imagens/d8.png'
+import D10 from '../../../imagens/d10.png'
+import D12 from '../../../imagens/d12.png'
 import D20 from '../../../imagens/d20.png'
-import validator from '../../../validator'
+import CustomDiceRoll from './diceRoll'
+import AddNewDice from './addDice'
 import '../extra.css'
 
 function SingularDice(props){
 
-    const {name, symbol, value} = props
+    const {name, symbol, value, isDamage, isRolling, setRollName, setRollValue, setIsDamage} = props
+
+    var diceSymbol;
+
+    switch(symbol){
+        case "D4":
+            diceSymbol = D4;
+            break;
+        case "D6":
+            diceSymbol = D6;
+            break;
+        case "D8":
+            diceSymbol = D8;
+            break;
+        case "D10":
+            diceSymbol = D10;
+            break;
+        case "D12":
+            diceSymbol = D12;
+            break;
+        case "D20":
+            diceSymbol = D20;
+            break;
+        default:
+            break;
+    }
 
     const rollDice = () => {
-        alert(value)
+        setRollName(name)
+        setRollValue(value)
+        setIsDamage(isDamage)
+        isRolling(true)
     }
 
     return(
         <div className='savedDice' onClick={() => rollDice()}>
-            <img src={symbol} alt='Dice Symbol'/>
+            <img src={diceSymbol} alt='Dice Symbol'/>
             <p>{name}</p>
         </div>
     )
@@ -24,41 +58,68 @@ export default function CustomDices(){
     const [savedDices, setSavedDices] = useState([]);
     const [fastDice, setFastDice] = useState("")
 
-    const addNewDice = () => {
-        
-        const newDice = {
-            name: "Mais um",
-            symbol: D20,
-            value: "4d6"
-        }
-        setSavedDices([...savedDices, newDice])
+    const [rolling, isRolling] = useState(false)
+    const [adding, isAdding] = useState(false)
+
+    const [rollValue, setRollValue] = useState("")
+    const [rollName, setRollName] = useState("")
+    const [isDamage, setIsDamage] = useState(false)
+
+    const rollFastDice = () => {
+        setRollName("Dado Rápido")
+        setRollValue(fastDice)
+        isRolling(true)
+        setFastDice("")
     }
+    
     return(
-        <div className="extraInnerContainer">
-            <div className="customDicesHeader">
-                <h2>Dados Customizados</h2>
-                <button className='addButton' onClick={() => addNewDice()}>+</button>
-            </div>
-            <div className="savedCustomDices">
-                {savedDices.map((dice) => (
-                    <SingularDice 
-                        name={dice.name}
-                        symbol={dice.symbol}
-                        value={dice.value}
+        <>
+            <div className="extraInnerContainer">
+                <div className="customDicesHeader">
+                    <h2>Dados Customizados</h2>
+                    <button className='addButton' onClick={() => isAdding(true)}>+</button>
+                </div>
+                <div className="savedCustomDices">
+                    {savedDices.map((dice) => (
+                        <SingularDice 
+                            name={dice.name}
+                            symbol={dice.symbol}
+                            value={dice.value}
+                            isDamage={dice.isDamage}
+                            setRollValue={setRollValue}
+                            isRolling={isRolling}
+                            setRollName={setRollName}
+                            setIsDamage={setIsDamage}
+                        />
+                    ))}
+                </div>
+                <div className="fastDice">
+                    <input 
+                        placeholder='Dado rápido (Ex: 2d20+5)' 
+                        type='text' 
+                        value={fastDice} 
+                        onChange={(e) => setFastDice(e.target.value)}
                     />
-                ))}
+                    <button onClick={() => rollFastDice()}>
+                        <BiSend/>
+                    </button>
+                </div>
             </div>
-            <div className="fastDice">
-                <input 
-                    placeholder='Dado rápido (Ex: 2d20+5)' 
-                    type='text' 
-                    value={fastDice} 
-                    onChange={(e) => setFastDice(e.target.value)}
+            {rolling && 
+                <CustomDiceRoll
+                    value = {rollValue}
+                    name = {rollName}
+                    isDamage = {isDamage}
+                    isRolling = {isRolling}
                 />
-                <button>
-                    <BiSend/>
-                </button>
-            </div>
-        </div>
+            }
+            {adding &&
+                <AddNewDice
+                    savedDices = {savedDices}
+                    setSavedDices = {setSavedDices}
+                    isAdding = {isAdding}
+                />
+            }
+        </>
     )
 }

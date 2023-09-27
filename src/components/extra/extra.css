@@ -92,3 +92,8 @@
 .savedDice:hover {
     border: 1px solid #fff;
 }
+
+.addDice input,
+.addDice label{
+    color: #000;
+}
