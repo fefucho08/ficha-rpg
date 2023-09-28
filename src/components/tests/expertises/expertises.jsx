@@ -52,13 +52,14 @@ export default function Expertises({expertises, roll, attributes}){
     for(let i = 0; i < 28; i++){
         componentsArr.push(
         <SingularExpertise
-        expertiseName = {expertises[i].name}
-        expertiseBonus = {expertises[i].value}
-        setExp = {expertises[i].method}
-        expertises = {expertises}
-        index = {i}
-        roll = {roll}
-        attributes={attributes}
+            expertiseName = {expertises[i].name}
+            expertiseBonus = {expertises[i].value}
+            setExp = {expertises[i].method}
+            expertises = {expertises}
+            index = {i}
+            key = {i}
+            roll = {roll}
+            attributes={attributes}
         />)
     }
     

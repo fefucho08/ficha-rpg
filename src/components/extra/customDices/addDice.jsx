@@ -12,22 +12,23 @@ export default function AddNewDice(props){
 
     const addDice = (name, value, symbol, isDamage) => {
         
-        if(value === "")
-            toast.error("Preencha o campo de dados")
-
-        if(name === "")
-            name = value
+        if(value) {
+            if(name === "")
+                name = value
     
-        const newDice = {
-            name: name,
-            value: value,
-            symbol: symbol,
-            isDamage: isDamage,
-            id: Math.random(),
-        }
+            const newDice = {
+                name: name,
+                value: value,
+                symbol: symbol,
+                isDamage: isDamage,
+                id: Math.random(),
+            }
 
-        setSavedDices([...savedDices, newDice])
-        isAdding(false)
+            setSavedDices([...savedDices, newDice])
+            isAdding(false)
+        }
+        else
+            toast.error("Preencha o campo de dados")
     }
 
     return (

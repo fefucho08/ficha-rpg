@@ -78,7 +78,7 @@ export default function CustomDices(){
         <>
             <div className="extraInnerContainer">
                 <div className="customDicesHeader">
-                    <h2>Dados Customizados</h2>
+                    <h2>Dados Personalizados</h2>
                     <button className='addButton' onClick={() => isAdding(true)}>+</button>
                     <div className="removeButton" onClick={() => isDeletingDices(true)}>-</div>
                 </div>

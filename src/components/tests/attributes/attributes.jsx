@@ -35,7 +35,7 @@ export default function Attributes({attributes, roll}){
     const attributesComponents = []
 
     for(let i = 0; i < 5; i++)
-        attributesComponents.push(<SingularAttribute attribute={attributes[i]} roll = {roll}/>)
+        attributesComponents.push(<SingularAttribute attribute={attributes[i]} roll = {roll} key={i}/>)
     
     
     return (

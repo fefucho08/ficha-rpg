@@ -12,7 +12,7 @@ export default function RemoveDices(props){
     return (
         <div className="popUp deletePop">
             <span onClick={() => isDeletingDices(false)}><FaRegTimesCircle/></span>
-            <h2>Remover Dados</h2>
+            <h2>Remover Dados Personalizados</h2>
             {savedDices.length > 0 ? (
                 <ul>
                     {savedDices.map((dice) => (
@@ -22,7 +22,7 @@ export default function RemoveDices(props){
                         </li>
                     ))}
                 </ul>
-            ) : "Nenhum dado personalizado"}
+            ) : "Nenhum dado"}
         </div>
     )
 }

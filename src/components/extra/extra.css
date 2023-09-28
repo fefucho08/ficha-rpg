@@ -184,3 +184,69 @@
     scale: 1.03;
     background-color: #d4d4d4;
 }
+
+.descriptionHeader h2 {
+    text-align: center;
+}
+
+.descriptionContent {
+    overflow-y: scroll;
+    height: 193px;
+}
+
+.descriptionNavigationBar {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.sectionButton {
+    margin: 0 3px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    padding-bottom: 2px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: font-size 0.5s linear;
+}
+
+.activeButton {
+    border-bottom: 2px solid #fff;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+.descriptionSection {
+    display: none;
+    padding: 10px 20px;
+}
+
+.descriptionSection label,
+.descriptionSection textarea {
+    display: block;
+}
+
+.descriptionSection label {
+    font-weight: bold;
+}
+
+.descriptionSection textarea {
+    margin: 5px 0px 10px;
+    min-height: 60px;
+    max-height: 120px;
+    resize: vertical;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 5px;
+}
+
+.activeSection {
+    display: flex;
+    flex-direction: column;
+}
