@@ -49,8 +49,16 @@ function App() {
         change = {change} 
         characters = {characters}
       />
-      <Rituals/>
-      <Extra/>
+      <Rituals
+        currentCharacter = {currentCharacter} 
+        change = {change} 
+        characters = {characters}
+      />
+      <Extra
+        currentCharacter = {currentCharacter} 
+        change = {change} 
+        characters = {characters}
+      />
     </div>
   );
 }

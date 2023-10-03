@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {BiSend} from 'react-icons/bi'
 import D4 from '../../../imagens/d4.png'
 import D6 from '../../../imagens/d6.png'
@@ -55,8 +55,11 @@ function SingularDice(props){
     )
 }
 
-export default function CustomDices(){
-    const [savedDices, setSavedDices] = useState([]);
+export default function CustomDices(props){
+
+    const {currentCharacter, change, characters} = props
+
+    const [savedDices, setSavedDices] = useState(characters[currentCharacter].customDices);
     const [fastDice, setFastDice] = useState("")
 
     const [rolling, isRolling] = useState(false)
@@ -74,6 +77,10 @@ export default function CustomDices(){
         setFastDice("")
     }
     
+    useEffect(() => {
+        change("customDices", savedDices, currentCharacter)
+    }, [savedDices])
+
     return(
         <>
             <div className="extraInnerContainer">

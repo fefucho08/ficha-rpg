@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Sangue from '../../imagens/Sangue.png'
 import Morte from '../../imagens/Morte.png'
 import Energia from '../../imagens/Energia.png'
@@ -57,13 +57,19 @@ function SingularRitual(props){
 }
 
 
-export default function Rituals(){
+export default function Rituals(props){
+
+    const {currentCharacter, change, characters} = props
 
     const [addingRitual, isAddingRitual] = useState(false)
 
     const [deletingRituals, isDeletingRituals] = useState(false)
 
-    const [ritualsList, setRitualsList] = useState([])
+    const [ritualsList, setRitualsList] = useState(characters[currentCharacter].rituals)
+
+    useEffect(() => {
+        change("rituals", ritualsList, currentCharacter)
+    }, [ritualsList])
 
 
     return (
