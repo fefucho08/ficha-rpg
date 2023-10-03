@@ -5,20 +5,36 @@ import Tests from './components/tests/tests';
 import Inventory from './components/inventory/inventory';
 import Rituals from './components/rituals/rituals';
 import Extra from './components/extra/extra';
-import { useEffect, useState } from 'react';
+import Navigation from './components/navigation/navigation';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import character from './character.json';
 
 function App() {
 
+  const [characters, setCharacters] = useState([])
   const [currentCharacter, setCurrentCharacter] = useState(0)
-  const inicialCharacter = JSON.parse(JSON.stringify(character));
-  const [characters, setCharacters] = useState([inicialCharacter])
+
+  
+  
+  useEffect(() => {
+    if(localStorage.getItem("charactersArr") === undefined){
+      const inicialCharacter = JSON.parse(JSON.stringify(character));
+      setCharacters([inicialCharacter])
+    }
+    else {
+      const charactersArr = JSON.parse(localStorage.getItem("charactersArr"));
+      setCharacters(charactersArr)
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("charactersArr", JSON.stringify(characters))
+  }, [characters])
 
   useEffect(() => {
     console.log(characters)
   }, [characters])
-
 
   function change(param, content, id){
     setCharacters(characters.map(character => {
@@ -30,37 +46,51 @@ function App() {
       }
     }))
   }
-  return (
-    <div className="App">
-      <Toaster position='top-center'/>
-      <Header />
-      <Info 
-        currentCharacter = {currentCharacter} 
-        change = {change} 
-        characters = {characters}
-      />
-      <Tests
-        currentCharacter = {currentCharacter} 
-        change = {change} 
-        characters = {characters}
-      />
-      <Inventory 
-        currentCharacter = {currentCharacter} 
-        change = {change} 
-        characters = {characters}
-      />
-      <Rituals
-        currentCharacter = {currentCharacter} 
-        change = {change} 
-        characters = {characters}
-      />
-      <Extra
-        currentCharacter = {currentCharacter} 
-        change = {change} 
-        characters = {characters}
-      />
-    </div>
-  );
+
+  return (characters.length > 0) ? (
+
+      <div className="App">
+        <Toaster position='top-center'/>
+        <Navigation
+          currentCharacter = {currentCharacter}
+          setCurrentCharacter = {setCurrentCharacter}
+          characters = {characters}
+          setCharacters = {setCharacters}
+        />
+        <Header 
+          currentCharacter = {currentCharacter}
+          setCurrentCharacter = {setCurrentCharacter}
+          characters = {characters}
+          setCharacters = {setCharacters}
+        />
+        <Info 
+          currentCharacter = {currentCharacter} 
+          change = {change} 
+          characters = {characters}
+        />
+        <Tests
+          currentCharacter = {currentCharacter} 
+          change = {change} 
+          characters = {characters}
+        />
+        <Inventory 
+          currentCharacter = {currentCharacter} 
+          change = {change} 
+          characters = {characters}
+        />
+        <Rituals
+          currentCharacter = {currentCharacter} 
+          change = {change} 
+          characters = {characters}
+        />
+        <Extra
+          currentCharacter = {currentCharacter} 
+          change = {change} 
+          characters = {characters}
+        />
+      </div>
+    ) : "";
+
 }
 
 export default App;

@@ -1,9 +1,16 @@
 import '../info.css';
-import {useState} from 'react';
+import {useEffect , useState} from 'react';
 
 function Dados({info, id, tipo, currentCharacter, change, characters, attribute}){
 
     const [classe, setClasse] = useState('notFilled');
+
+    useEffect(() => {
+        if(characters[currentCharacter][attribute] === "")
+            setClasse("notFilled")
+        else
+            setClasse("filled")
+    }, [currentCharacter])
 
     function changeClasse(content){
         if(content !=='') 
@@ -37,40 +44,40 @@ export default function Personal(props){
     return(
         <div className="box" id='personal'>
             <Dados
-            info="Jogador"
-            id='jogador'
-            tipo='text'
-            attribute="player"
-            currentCharacter = {currentCharacter}
-            change = {change}
-            characters={characters}
+                info="Jogador"
+                id='jogador'
+                tipo='text'
+                attribute="player"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
             <Dados
-            info="Origem"
-            id='origem'
-            tipo='text'
-            attribute="origin"
-            currentCharacter = {currentCharacter}
-            change = {change}
-            characters={characters}
+                info="Origem"
+                id='origem'
+                tipo='text'
+                attribute="origin"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
             <Dados
-            info="Classe"
-            id='classe'
-            tipo='text'
-            attribute="class"
-            currentCharacter = {currentCharacter}
-            change = {change}
-            characters={characters}
+                info="Classe"
+                id='classe'
+                tipo='text'
+                attribute="class"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
             <Dados
-            info='Nex'
-            id='nex'
-            tipo='number'
-            attribute="nex"
-            currentCharacter = {currentCharacter}
-            change = {change}
-            characters={characters}
+                info='Nex'
+                id='nex'
+                tipo='number'
+                attribute="nex"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
         </div>
     );

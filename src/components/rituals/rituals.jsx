@@ -71,6 +71,9 @@ export default function Rituals(props){
         change("rituals", ritualsList, currentCharacter)
     }, [ritualsList])
 
+    useEffect(() => {
+        setRitualsList(characters[currentCharacter].rituals)
+    }, [currentCharacter])
 
     return (
         <>

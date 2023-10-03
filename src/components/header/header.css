@@ -12,6 +12,7 @@
     cursor: pointer;
     font-size: 70%;
     transition: background-color, transform 0.3s linear;
+    margin-right: 3px;
 }
 
 .container button:hover{

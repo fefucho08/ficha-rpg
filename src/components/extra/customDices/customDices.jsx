@@ -81,6 +81,10 @@ export default function CustomDices(props){
         change("customDices", savedDices, currentCharacter)
     }, [savedDices])
 
+    useEffect(() => {
+        setSavedDices(characters[currentCharacter].customDices)
+    }, [currentCharacter])
+
     return(
         <>
             <div className="extraInnerContainer">

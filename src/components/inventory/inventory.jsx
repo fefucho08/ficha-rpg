@@ -14,6 +14,11 @@ export default function Inventory(props){
         change("items", items, currentCharacter);
     }, [items])
 
+    useEffect(() =>{
+        setItems(characters[currentCharacter].items);
+        setWeapons(characters[currentCharacter].weapons);
+    }, [currentCharacter])
+
     useEffect(() => {
         change("weapons", weapons, currentCharacter);
     }, [weapons])

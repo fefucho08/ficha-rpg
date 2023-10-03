@@ -38,6 +38,12 @@ export default function Foto(props){
         }
         };
 
+    useEffect(() => {
+        if(document.getElementById("name").value === "")
+            setClasse("notFilled")
+        else
+            setClasse("filled")
+    }, [currentCharacter])
 
     function changeClasse(content){
         if(content !== '')
@@ -54,14 +60,15 @@ export default function Foto(props){
                 </span>
             </label>
             <input 
-            type='text' 
-            className={classe} 
-            onChange={(e) => {
-                changeClasse(e.target.value);
-                change("name", e.target.value, currentCharacter);
-            }}
-            id='name'
-            placeholder='Nome'
+                type='text' 
+                className={classe} 
+                onChange={(e) => {
+                    changeClasse(e.target.value);
+                    change("name", e.target.value, currentCharacter);
+                }}
+                value={characters[currentCharacter].name}
+                id='name'
+                placeholder='Nome'
             />
         </div>
     )
