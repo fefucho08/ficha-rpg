@@ -57,38 +57,40 @@ function App() {
           characters = {characters}
           setCharacters = {setCharacters}
         />
-        <Header 
-          currentCharacter = {currentCharacter}
-          setCurrentCharacter = {setCurrentCharacter}
-          characters = {characters}
-          setCharacters = {setCharacters}
-        />
-        <Info 
-          currentCharacter = {currentCharacter} 
-          change = {change} 
-          characters = {characters}
-        />
-        <Tests
-          currentCharacter = {currentCharacter} 
-          change = {change} 
-          characters = {characters}
-        />
-        <Inventory 
-          currentCharacter = {currentCharacter} 
-          change = {change} 
-          characters = {characters}
-          setCharacters = {setCharacters}
-        />
-        <Rituals
-          currentCharacter = {currentCharacter} 
-          change = {change} 
-          characters = {characters}
-        />
-        <Extra
-          currentCharacter = {currentCharacter} 
-          change = {change} 
-          characters = {characters}
-        />
+        <div className='sheetContent'>
+          <Header 
+            currentCharacter = {currentCharacter}
+            setCurrentCharacter = {setCurrentCharacter}
+            characters = {characters}
+            setCharacters = {setCharacters}
+          />
+          <Info 
+            currentCharacter = {currentCharacter} 
+            change = {change} 
+            characters = {characters}
+          />
+          <Tests
+            currentCharacter = {currentCharacter} 
+            change = {change} 
+            characters = {characters}
+          />
+          <Inventory 
+            currentCharacter = {currentCharacter} 
+            change = {change} 
+            characters = {characters}
+            setCharacters = {setCharacters}
+          />
+          <Rituals
+            currentCharacter = {currentCharacter} 
+            change = {change} 
+            characters = {characters}
+          />
+          <Extra
+            currentCharacter = {currentCharacter} 
+            change = {change} 
+            characters = {characters}
+          />
+        </div>
       </div>
     ) : "";
 

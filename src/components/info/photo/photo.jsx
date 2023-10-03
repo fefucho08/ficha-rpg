@@ -5,13 +5,14 @@ import { useEffect, useState } from 'react';
 export default function Foto(props){
     const {currentCharacter, change, characters} = props
     const [classe, setClasse] = useState('notFilled')
-    
+    const [srcPhoto, setSrcPhoto] = useState(Photo)
+
     useEffect(() => {
-        if(characters[currentCharacter].photo !== ""){
-            const photo = document.getElementById("fotoPersonagem")
-            photo.src = JSON.parse(characters[currentCharacter].photo)
-        }
-    })
+        if(characters[currentCharacter].photo !== "")
+            setSrcPhoto(JSON.parse(characters[currentCharacter].photo))
+        else
+            setSrcPhoto(Photo)
+    }, [currentCharacter])
 
 
     // MUDAR FOTO
@@ -25,8 +26,7 @@ export default function Foto(props){
 
             reader.onload = (e) => {
                 const readerTarget = e.target;
-                const foto = document.getElementById("fotoPersonagem");
-                foto.src = readerTarget.result;
+                setSrcPhoto(readerTarget.result);
                 change("photo", JSON.stringify(reader.result), currentCharacter)
             }
                 
@@ -56,7 +56,7 @@ export default function Foto(props){
             <label className='picture'>
                 <input type='file' accept='image/*' onChange={setPhoto}/>
                 <span className='pictureImg'>
-                    <img src={Photo} alt='Foto do Personagem' id='fotoPersonagem'/>
+                    <img src={srcPhoto} alt='Foto do Personagem' id='fotoPersonagem'/>
                 </span>
             </label>
             <input 

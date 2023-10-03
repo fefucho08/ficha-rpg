@@ -6,7 +6,6 @@
     top: 0;
     padding-bottom: 0;
     display: flex;
-    margin-bottom: 20px;
     position: relative;
     align-items: flex-end;
     border-bottom: 1px solid #fff;
@@ -37,6 +36,7 @@
     transition: all 0.3s linear;
     cursor: pointer;
     justify-content: center;
+    border-bottom: 1px solid #fff;
 }
 
 .characterTab:hover {
@@ -45,6 +45,8 @@
 
 .current {
     height: 100%;
+    border-bottom: none;
+    box-shadow: 0.8px 3px 1px #000;
 }
 
 .addCharacter {
