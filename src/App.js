@@ -5,7 +5,7 @@ import Tests from './components/tests/tests';
 import Inventory from './components/inventory/inventory';
 import Rituals from './components/rituals/rituals';
 import Extra from './components/extra/extra';
-import Navigation from './components/navigation/navigation';
+import CharactersNavigation from './components/navigation/navigation';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import character from './character.json';
@@ -51,7 +51,7 @@ function App() {
 
       <div className="App">
         <Toaster position='top-center'/>
-        <Navigation
+        <CharactersNavigation
           currentCharacter = {currentCharacter}
           setCurrentCharacter = {setCurrentCharacter}
           characters = {characters}

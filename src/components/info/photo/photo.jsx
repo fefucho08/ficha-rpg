@@ -12,7 +12,7 @@ export default function Foto(props){
             setSrcPhoto(JSON.parse(characters[currentCharacter].photo))
         else
             setSrcPhoto(Photo)
-    }, [currentCharacter])
+    }, [currentCharacter, characters])
 
 
     // MUDAR FOTO
@@ -43,7 +43,7 @@ export default function Foto(props){
             setClasse("notFilled")
         else
             setClasse("filled")
-    }, [currentCharacter])
+    }, [currentCharacter, characters])
 
     function changeClasse(content){
         if(content !== '')

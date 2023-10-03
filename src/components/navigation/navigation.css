@@ -37,6 +37,7 @@
     cursor: pointer;
     justify-content: center;
     border-bottom: 1px solid #fff;
+    overflow: hidden;
 }
 
 .characterTab:hover {

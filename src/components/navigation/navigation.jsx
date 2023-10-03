@@ -3,7 +3,7 @@ import character from '../../character.json'
 import toast from "react-hot-toast"
 import './navigation.css'
 
-export default function Navigation(props) {
+export default function CharactersNavigation(props) {
     const {currentCharacter, setCurrentCharacter, characters, setCharacters} = props
 
     const addCharacter = () => {

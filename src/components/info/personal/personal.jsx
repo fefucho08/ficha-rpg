@@ -10,7 +10,7 @@ function Dados({info, id, tipo, currentCharacter, change, characters, attribute}
             setClasse("notFilled")
         else
             setClasse("filled")
-    }, [currentCharacter])
+    }, [currentCharacter, characters])
 
     function changeClasse(content){
         if(content !=='') 
