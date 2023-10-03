@@ -9,8 +9,6 @@ export default function Header(props){
 
     const removeCharacter = () => {
         if (characters.length > 1) {
-            if(currentCharacter === (characters.length)-1)
-                var isLast = true;
             const updatedCharacters = characters.filter(character => character.id !== currentCharacter);
     
             const updatedCharactersWithIds = updatedCharacters.map((character, index) => ({
@@ -19,8 +17,7 @@ export default function Header(props){
             }));
             
             setCharacters(updatedCharactersWithIds);
-            if(isLast)
-                setCurrentCharacter(characters.length-1);
+            setCurrentCharacter(0)
         } else {
             toast.error("Não é possível remover seu único personagem");
         }

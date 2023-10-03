@@ -77,6 +77,7 @@ function App() {
           currentCharacter = {currentCharacter} 
           change = {change} 
           characters = {characters}
+          setCharacters = {setCharacters}
         />
         <Rituals
           currentCharacter = {currentCharacter} 

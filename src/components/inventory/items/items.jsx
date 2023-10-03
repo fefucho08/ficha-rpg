@@ -26,7 +26,7 @@ function SingularItem({name, space, deleteItem, id}){
 }
 
 
-export default function Items({items, setItems, weapons, setWeapons, characters, currentCharacter, change}){
+export default function Items({items, setItems, weapons, setWeapons, characters, currentCharacter, change, setCharacters}){
 
     const str = characters[currentCharacter].strength
     const [trigger, setTrigger] = useState(false)
@@ -41,7 +41,7 @@ export default function Items({items, setItems, weapons, setWeapons, characters,
     useEffect(() =>{
         const sum = items.reduce((total, item) => total +  parseInt(item.space), 0);
         setSpaceUsed(sum);
-        
+
         change("items", items, currentCharacter)
         change("weapons", weapons, currentCharacter)
     }, [items])
