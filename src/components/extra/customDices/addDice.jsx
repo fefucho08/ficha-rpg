@@ -44,7 +44,7 @@ export default function AddNewDice(props){
                 <option value="D8">D8</option>
                 <option value="D10">D10</option>
                 <option value="D12">D12</option>
-                <option value="D20" selected>D20</option>
+                <option value="D20">D20</option>
             </select>
             <label htmlFor="diceName">Nome(Opcional)</label>
             <input

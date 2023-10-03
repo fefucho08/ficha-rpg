@@ -26,9 +26,9 @@ function SingularItem({name, space, deleteItem, id}){
 }
 
 
-export default function Items({items, setItems, weapons, setWeapons, str}){
+export default function Items({items, setItems, weapons, setWeapons, characters, currentCharacter, change, setCharacters}){
 
-
+    const str = characters[currentCharacter].strength
     const [trigger, setTrigger] = useState(false)
 
     const [space, setSpaceUsed] = useState(0)
@@ -41,6 +41,9 @@ export default function Items({items, setItems, weapons, setWeapons, str}){
     useEffect(() =>{
         const sum = items.reduce((total, item) => total +  parseInt(item.space), 0);
         setSpaceUsed(sum);
+
+        change("items", items, currentCharacter)
+        change("weapons", weapons, currentCharacter)
     }, [items])
 
 
@@ -60,9 +63,9 @@ export default function Items({items, setItems, weapons, setWeapons, str}){
         if(window.confirm("Deseja mesmo remover esse item?")){
             const newInv = items.filter((item) => item.id !== id);
             const newWeapons = weapons.filter((weapon) => weapon.id !== id)
-
+        
             setItems(newInv);
-            setWeapons(newWeapons)
+            setWeapons(newWeapons);
         }
         
     }
@@ -81,11 +84,11 @@ export default function Items({items, setItems, weapons, setWeapons, str}){
             
             {items.map((item) => (
                 <SingularItem
-                key={item.id}
-                id={item.id}
-                name={item.item}
-                space={item.space}
-                deleteItem={deleteItem}
+                    key={item.id}
+                    id={item.id}
+                    name={item.item}
+                    space={item.space}
+                    deleteItem={deleteItem}
                 />
             ))}
 

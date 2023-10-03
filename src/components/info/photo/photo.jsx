@@ -1,11 +1,20 @@
 import './photo.css'
 import Photo from '../../../imagens/fotoNaoDefinida.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Foto(){
-
+export default function Foto(props){
+    const {currentCharacter, change, characters} = props
     const [classe, setClasse] = useState('notFilled')
-    
+    const [srcPhoto, setSrcPhoto] = useState(Photo)
+
+    useEffect(() => {
+        if(characters[currentCharacter].photo !== "")
+            setSrcPhoto(JSON.parse(characters[currentCharacter].photo))
+        else
+            setSrcPhoto(Photo)
+    }, [currentCharacter, characters])
+
+
     // MUDAR FOTO
 
     function setPhoto(e){
@@ -17,8 +26,8 @@ export default function Foto(){
 
             reader.onload = (e) => {
                 const readerTarget = e.target;
-                const foto = document.getElementById("fotoPersonagem");
-                foto.src = readerTarget.result;
+                setSrcPhoto(readerTarget.result);
+                change("photo", JSON.stringify(reader.result), currentCharacter)
             }
                 
             
@@ -29,6 +38,12 @@ export default function Foto(){
         }
         };
 
+    useEffect(() => {
+        if(document.getElementById("name").value === "")
+            setClasse("notFilled")
+        else
+            setClasse("filled")
+    }, [currentCharacter, characters])
 
     function changeClasse(content){
         if(content !== '')
@@ -41,15 +56,19 @@ export default function Foto(){
             <label className='picture'>
                 <input type='file' accept='image/*' onChange={setPhoto}/>
                 <span className='pictureImg'>
-                    <img src={Photo} alt='Foto do Personagem' id='fotoPersonagem'/>
+                    <img src={srcPhoto} alt='Foto do Personagem' id='fotoPersonagem'/>
                 </span>
             </label>
             <input 
-            type='text' 
-            className={classe} 
-            onChange={(e) => changeClasse(e.target.value)}
-            id='name'
-            placeholder='Nome'
+                type='text' 
+                className={classe} 
+                onChange={(e) => {
+                    changeClasse(e.target.value);
+                    change("name", e.target.value, currentCharacter);
+                }}
+                value={characters[currentCharacter].name}
+                id='name'
+                placeholder='Nome'
             />
         </div>
     )

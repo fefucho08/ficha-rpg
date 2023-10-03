@@ -3,39 +3,41 @@ import Bar from './bar/bar'
 import PopUpMax from './changeMax/changeMax';
 import './stats.css'
 
-export default function Stats(){
-    
+export default function Stats(props){
+    const {currentCharacter, change, characters} = props
     const [popUp, setPopUp] = useState(false);
 
-    const [vidaMax, setVidaMax] = useState(10);
-    const [sanMax, setSanMax] = useState(10);
-    const [peMax, setPeMax] = useState(10);
-
     const variables = {
-        Vida: vidaMax,
-        San: sanMax,
-        Pe: peMax,
+        Vida: characters[currentCharacter].hpMax,
+        San: characters[currentCharacter].sanMax,
+        Pe: characters[currentCharacter].peMax,
     }
-    
-    const methods = {
-        Vida: setVidaMax,
-        San: setSanMax,
-        Pe: setPeMax
-    };
 
     return(
         <div className="box">
             <Bar
-            max={vidaMax}
-            tipo='PV'
+                max={variables.Vida}
+                tipo='PV'
+                attribute="hp"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters = {characters}
             />
             <Bar
-            max={sanMax}
-            tipo='San'
+                max={variables.San}
+                tipo='San'
+                attribute="san"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters = {characters}
             />
             <Bar
-            max={peMax}
-            tipo='PE'
+                max={variables.Pe}
+                tipo='PE'
+                attribute="pe"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters = {characters}
             />
             <button
             className='editButton'
@@ -43,7 +45,14 @@ export default function Stats(){
                 setPopUp(true);
             }}
             >Editar</button>
-            <PopUpMax trigger={popUp} setTrigger={setPopUp} setVars={methods} variables={variables}/>
+            <PopUpMax 
+                trigger={popUp} 
+                setTrigger={setPopUp} 
+                variables={variables}
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters = {characters}
+            />
         </div>
     )
 }

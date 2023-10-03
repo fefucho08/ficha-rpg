@@ -1,9 +1,16 @@
 import '../info.css';
-import {useState} from 'react';
+import {useEffect , useState} from 'react';
 
-function Dados({info, id, tipo}){
+function Dados({info, id, tipo, currentCharacter, change, characters, attribute}){
 
     const [classe, setClasse] = useState('notFilled');
+
+    useEffect(() => {
+        if(characters[currentCharacter][attribute] === "")
+            setClasse("notFilled")
+        else
+            setClasse("filled")
+    }, [currentCharacter, characters])
 
     function changeClasse(content){
         if(content !=='') 
@@ -21,35 +28,56 @@ function Dados({info, id, tipo}){
                 id={id}
                 type={tipo}
                 className={classe}
-                onChange={(e) => changeClasse(e.target.value)}
+                value={characters[currentCharacter][attribute]}
+                onChange={(e) => {
+                    changeClasse(e.target.value);
+                    change(attribute, e.target.value, currentCharacter)
+                }}
             />
         </div>
     )
 }
 
-export default function Personal(){
+export default function Personal(props){
 
+    const {currentCharacter, change, characters} = props
     return(
         <div className="box" id='personal'>
             <Dados
-            info="Jogador"
-            id='jogador'
-            tipo='text'
+                info="Jogador"
+                id='jogador'
+                tipo='text'
+                attribute="player"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
             <Dados
-            info="Origem"
-            id='origem'
-            tipo='text'
+                info="Origem"
+                id='origem'
+                tipo='text'
+                attribute="origin"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
             <Dados
-            info="Classe"
-            id='classe'
-            tipo='text'
+                info="Classe"
+                id='classe'
+                tipo='text'
+                attribute="class"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
             <Dados
-            info='Nex'
-            id='nex'
-            tipo='number'
+                info='Nex'
+                id='nex'
+                tipo='number'
+                attribute="nex"
+                currentCharacter = {currentCharacter}
+                change = {change}
+                characters={characters}
             />
         </div>
     );

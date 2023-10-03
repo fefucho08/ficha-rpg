@@ -1,21 +1,18 @@
-import { useState } from 'react';
 import './bar.css';
 
-export default function Bar({max, tipo}){
-
-    const [atual, setAtual] = useState(10);
+export default function Bar({max, tipo, attribute, currentCharacter, change, characters}){
 
     return(
         <div>
             <div className='bar'>
                 <div className='content' id={tipo} style={{
-                    width: `${(atual/max)*100}%`
+                    width: `${(characters[currentCharacter][attribute]/max)*100}%`
                 }}></div>
                 <span className='status'>
                     <span>{tipo}: </span>
                     <input
-                    value={atual}
-                    onChange={(e) => setAtual(e.target.value)}/>
+                        value={characters[currentCharacter][attribute]}
+                        onChange={(e) => change(attribute, e.target.value, currentCharacter)}/>
                     <span>/{max}</span>
                 </span>
             </div>
