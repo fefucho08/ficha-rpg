@@ -26,9 +26,9 @@ function SingularItem({name, space, deleteItem, id}){
 }
 
 
-export default function Items({items, setItems, weapons, setWeapons, str}){
+export default function Items({items, setItems, weapons, setWeapons, characters, currentCharacter}){
 
-
+    const str = characters[currentCharacter].strength
     const [trigger, setTrigger] = useState(false)
 
     const [space, setSpaceUsed] = useState(0)
@@ -81,11 +81,11 @@ export default function Items({items, setItems, weapons, setWeapons, str}){
             
             {items.map((item) => (
                 <SingularItem
-                key={item.id}
-                id={item.id}
-                name={item.item}
-                space={item.space}
-                deleteItem={deleteItem}
+                    key={item.id}
+                    id={item.id}
+                    name={item.item}
+                    space={item.space}
+                    deleteItem={deleteItem}
                 />
             ))}
 

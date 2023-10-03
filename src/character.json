@@ -46,7 +46,7 @@
     "vontade": 0,
     "space": 0,
     "spaceMax": 5,
-    "inventory": [],
+    "items": [],
     "weapons": [],
     "rituals": [],
     "customDices": [],

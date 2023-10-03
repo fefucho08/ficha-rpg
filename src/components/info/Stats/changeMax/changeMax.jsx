@@ -2,16 +2,18 @@ import './changeMax.css';
 import { FaRegTimesCircle } from 'react-icons/fa';
 
 
-function ChangeDefault({tipo, setVar, variable}){
+function ChangeDefault({tipo, change, attribute, currentCharacter, characters}){
+
+
     return (
     <div className='changeDefault'>
         <h2>{tipo} Máx.</h2>
         <input
-        className='inputMax'
-        type='number'
-        placeholder = {10}
-        value={variable}
-        onChange={(e) => setVar(e.target.value)}
+            className='inputMax'
+            type='number'
+            placeholder = {10}
+            value={characters[currentCharacter][attribute]}
+            onChange={(e) => change(attribute, e.target.value, currentCharacter)}
         />
     </div>
     
@@ -19,18 +21,18 @@ function ChangeDefault({tipo, setVar, variable}){
 }
 
 
-export default function PopUpMax({trigger, setTrigger, variables, setVars}){
+export default function PopUpMax({trigger, setTrigger, variables, currentCharacter, change, characters}){
     return (trigger) ? (
         <div className="popUp">
             <span onClick={() =>{
                 if(variables.Vida === '')
-                    setVars.Vida(10);
+                    change("hpMax", 10, currentCharacter);
                 
                 if(variables.San === '')
-                    setVars.San(10)
+                    change("sanMax", 10, currentCharacter);
 
                 if(variables.Pe === '')
-                    setVars.Pe(10)
+                    change("peMax", 10, currentCharacter);
 
                 setTrigger(false);
             }}>
@@ -39,21 +41,27 @@ export default function PopUpMax({trigger, setTrigger, variables, setVars}){
             
             <h1 style={{color:'black'}}>Editar Variáveis</h1>
             <ChangeDefault 
-            tipo = 'Vida' 
-            setVar={setVars.Vida} 
-            variable={variables.Vida}
+                tipo = 'Vida'
+                attribute="hpMax"  
+                change={change}
+                characters={characters}
+                currentCharacter={currentCharacter}
             />
 
             <ChangeDefault
-            tipo='San'
-            setVar={setVars.San}
-            variable={variables.San}
+                tipo='San'
+                attribute="sanMax"
+                change={change}
+                characters={characters}
+                currentCharacter={currentCharacter}
             />
 
             <ChangeDefault
-            tipo='PE'
-            setVar={setVars.Pe}
-            variable={variables.Pe}
+                tipo='PE'
+                attribute="peMax"
+                change={change}
+                characters={characters}
+                currentCharacter={currentCharacter}
             />
         </div>
     ) : "";

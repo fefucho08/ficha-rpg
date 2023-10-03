@@ -1,11 +1,19 @@
 import './photo.css'
 import Photo from '../../../imagens/fotoNaoDefinida.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Foto(props){
     const {currentCharacter, change, characters} = props
     const [classe, setClasse] = useState('notFilled')
     
+    useEffect(() => {
+        if(characters[currentCharacter].photo !== ""){
+            const photo = document.getElementById("fotoPersonagem")
+            photo.src = JSON.parse(characters[currentCharacter].photo)
+        }
+    })
+
+
     // MUDAR FOTO
 
     function setPhoto(e){
@@ -19,6 +27,7 @@ export default function Foto(props){
                 const readerTarget = e.target;
                 const foto = document.getElementById("fotoPersonagem");
                 foto.src = readerTarget.result;
+                change("photo", JSON.stringify(reader.result), currentCharacter)
             }
                 
             

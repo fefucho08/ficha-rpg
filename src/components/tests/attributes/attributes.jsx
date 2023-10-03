@@ -1,41 +1,44 @@
-import { useEffect, useState } from 'react'
 import D20 from '../../../imagens/d20.png'
 import '../tests.css'
 
-function SingularAttribute({attribute, roll}){
+function SingularAttribute({attribute, roll, currentCharacter, change, characters}){
 
-    const [value, setValue] = useState(1);
-
-
-    useEffect(() => {
-        localStorage.setItem(attribute.name, value)
-    }, [value, attribute.name])
+    const value = characters[currentCharacter][attribute.attribute]
 
     return(
         <div className='boxAtt'>
             <img 
-            src={D20} 
-            alt='d20' 
-            className='d20'
-            onClick={() => roll(attribute.name, value)}/>
+                src={D20} 
+                alt='d20' 
+                className='d20'
+                onClick={() => roll(attribute.name, value)}
+            />
             <p>{attribute.name}</p>
             <input
-            value={attribute.value}
-            type='number'
-            onChange={(e) => {
-                attribute.method(e.target.value)
-                setValue(e.target.value)
+                value={value}
+                type='number'
+                onChange={(e) => {
+                    change(attribute.attribute, e.target.value, currentCharacter)
             }}
             />
         </div>
     )
 }
 
-export default function Attributes({attributes, roll}){
+export default function Attributes({attributes, roll, currentCharacter, change, characters}){
     const attributesComponents = []
 
     for(let i = 0; i < 5; i++)
-        attributesComponents.push(<SingularAttribute attribute={attributes[i]} roll = {roll} key={i}/>)
+        attributesComponents.push(
+            <SingularAttribute 
+                attribute={attributes[i]} 
+                roll = {roll} 
+                key={i}
+                currentCharacter = {currentCharacter} 
+                change = {change} 
+                characters = {characters}
+            />
+        )
     
     
     return (

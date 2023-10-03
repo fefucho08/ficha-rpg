@@ -13,7 +13,6 @@ function App() {
 
   const [currentCharacter, setCurrentCharacter] = useState(0)
   const inicialCharacter = JSON.parse(JSON.stringify(character));
-  const [Str, setStr] = useState(0)
   const [characters, setCharacters] = useState([inicialCharacter])
 
   useEffect(() => {
@@ -35,9 +34,21 @@ function App() {
     <div className="App">
       <Toaster position='top-center'/>
       <Header />
-      <Info currentCharacter = {currentCharacter} change = {change} characters = {characters}/>
-      <Tests setStr = {setStr}/>
-      <Inventory str = {Str}/>
+      <Info 
+        currentCharacter = {currentCharacter} 
+        change = {change} 
+        characters = {characters}
+      />
+      <Tests
+        currentCharacter = {currentCharacter} 
+        change = {change} 
+        characters = {characters}
+      />
+      <Inventory 
+        currentCharacter = {currentCharacter} 
+        change = {change} 
+        characters = {characters}
+      />
       <Rituals/>
       <Extra/>
     </div>
