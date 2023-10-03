@@ -2,8 +2,8 @@ import './photo.css'
 import Photo from '../../../imagens/fotoNaoDefinida.png'
 import { useState } from 'react';
 
-export default function Foto(){
-
+export default function Foto(props){
+    const {currentCharacter, change, characters} = props
     const [classe, setClasse] = useState('notFilled')
     
     // MUDAR FOTO
@@ -47,7 +47,10 @@ export default function Foto(){
             <input 
             type='text' 
             className={classe} 
-            onChange={(e) => changeClasse(e.target.value)}
+            onChange={(e) => {
+                changeClasse(e.target.value);
+                change("name", e.target.value, currentCharacter);
+            }}
             id='name'
             placeholder='Nome'
             />

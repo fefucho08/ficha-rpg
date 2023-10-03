@@ -3,8 +3,8 @@ import Bar from './bar/bar'
 import PopUpMax from './changeMax/changeMax';
 import './stats.css'
 
-export default function Stats(){
-    
+export default function Stats(props){
+    const {currentCharacter, change, characters} = props
     const [popUp, setPopUp] = useState(false);
 
     const [vidaMax, setVidaMax] = useState(10);
