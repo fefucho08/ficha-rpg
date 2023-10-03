@@ -6,7 +6,7 @@ import Inventory from './components/inventory/inventory';
 import Rituals from './components/rituals/rituals';
 import Extra from './components/extra/extra';
 import Navigation from './components/navigation/navigation';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import character from './character.json';
 
@@ -14,22 +14,22 @@ function App() {
 
   const [characters, setCharacters] = useState([])
   const [currentCharacter, setCurrentCharacter] = useState(0)
-
-  
   
   useEffect(() => {
-    if(localStorage.getItem("charactersArr") === undefined){
+    if(localStorage.getItem("charactersArr") === null){
       const inicialCharacter = JSON.parse(JSON.stringify(character));
       setCharacters([inicialCharacter])
     }
     else {
-      const charactersArr = JSON.parse(localStorage.getItem("charactersArr"));
+      const localArr = localStorage.getItem("charactersArr")
+      const charactersArr = JSON.parse(localArr);
       setCharacters(charactersArr)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem("charactersArr", JSON.stringify(characters))
+    if(characters.length > 0)
+      localStorage.setItem("charactersArr", JSON.stringify(characters))
   }, [characters])
 
   useEffect(() => {

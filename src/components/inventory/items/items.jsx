@@ -26,7 +26,7 @@ function SingularItem({name, space, deleteItem, id}){
 }
 
 
-export default function Items({items, setItems, weapons, setWeapons, characters, currentCharacter}){
+export default function Items({items, setItems, weapons, setWeapons, characters, currentCharacter, change}){
 
     const str = characters[currentCharacter].strength
     const [trigger, setTrigger] = useState(false)
@@ -41,6 +41,9 @@ export default function Items({items, setItems, weapons, setWeapons, characters,
     useEffect(() =>{
         const sum = items.reduce((total, item) => total +  parseInt(item.space), 0);
         setSpaceUsed(sum);
+        
+        change("items", items, currentCharacter)
+        change("weapons", weapons, currentCharacter)
     }, [items])
 
 
@@ -60,9 +63,9 @@ export default function Items({items, setItems, weapons, setWeapons, characters,
         if(window.confirm("Deseja mesmo remover esse item?")){
             const newInv = items.filter((item) => item.id !== id);
             const newWeapons = weapons.filter((weapon) => weapon.id !== id)
-
+        
             setItems(newInv);
-            setWeapons(newWeapons)
+            setWeapons(newWeapons);
         }
         
     }

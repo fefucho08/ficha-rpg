@@ -10,18 +10,11 @@ export default function Inventory(props){
     const [items, setItems] = useState(characters[currentCharacter].items)
     const [weapons, setWeapons] = useState(characters[currentCharacter].weapons);
 
-    useEffect(() => {
-        change("items", items, currentCharacter);
-    }, [items])
 
     useEffect(() =>{
         setItems(characters[currentCharacter].items);
         setWeapons(characters[currentCharacter].weapons);
     }, [currentCharacter])
-
-    useEffect(() => {
-        change("weapons", weapons, currentCharacter);
-    }, [weapons])
 
     return(
         <div className="maxContainer">
@@ -32,6 +25,7 @@ export default function Inventory(props){
                 setItems = {setItems}
                 weapons = {weapons}
                 setWeapons = {setWeapons}
+                change = {change}
             />
             <Weapons
                 items = {items}
