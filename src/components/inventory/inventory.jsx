@@ -28,6 +28,23 @@ export default function Inventory(props){
     }, [items]);
     
 
+    useEffect(() => {
+        // Atualize o array de objetos characters com base no estado local items
+        const updatedCharacters = characters.map((character) => {
+            if (character.id === currentCharacter) {
+                return {
+                    ...character,
+                    items: items,
+                    weapons: weapons,
+                };
+            }
+            return character;
+        });
+    
+        // Atualize o estado global characters com o array atualizado
+        setCharacters(updatedCharacters);
+    }, [weapons]);
+
 
     useEffect(() =>{
         setItems(characters[currentCharacter].items);
