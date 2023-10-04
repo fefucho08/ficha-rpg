@@ -38,9 +38,9 @@ export default function Header(props){
     return(
         <div className="container" style={{textAlign: 'center'}}>
             <img
-            style={{width: '130px'}}
-            src={logo}
-            alt='Logo da Ordo Realitas'
+                style={{width: '130px'}}
+                src={logo}
+                alt='Logo da Ordo Realitas'
             />
             <h1>Ficha do Investigador</h1>
             <button onClick={() => resetCharacter()}>
