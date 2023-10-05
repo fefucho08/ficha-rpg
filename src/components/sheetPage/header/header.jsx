@@ -1,7 +1,6 @@
 import './header.css';
-import logo from '../../Ordo.svg'
+import logo from '../../../Ordo.svg'
 import toast from 'react-hot-toast';
-import character from '../../character.json'
 
 export default function Header(props){
 

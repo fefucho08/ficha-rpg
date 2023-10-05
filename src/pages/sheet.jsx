@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/header/header'
-import Info from '../components/info/info'
-import Tests from '../components/tests/tests';
-import Inventory from '../components/inventory/inventory';
-import Rituals from '../components/rituals/rituals';
-import Extra from '../components/extra/extra';
-import CharactersNavigation from '../components/navigation/navigation';
+import Header from '../components/sheetPage/header/header'
+import Info from '../components/sheetPage/info/info'
+import Tests from '../components/sheetPage/tests/tests';
+import Inventory from '../components/sheetPage/inventory/inventory';
+import Rituals from '../components/sheetPage/rituals/rituals';
+import Extra from '../components/sheetPage/extra/extra';
+import CharactersNavigation from '../components/sheetPage/navigation/navigation'
 import './sheet.css'
 import character from '../character.json'
 

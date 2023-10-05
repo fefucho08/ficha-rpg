@@ -1,5 +1,9 @@
+import './gm.css'
+
 export default function GameMaster(){
     return(
-        <h1 style={{color: "#fff"}}>Game Master</h1>
+        <div className="gameMasterContent">
+            <h1>Área <span>em construção...</span></h1>
+        </div>
     )
 }

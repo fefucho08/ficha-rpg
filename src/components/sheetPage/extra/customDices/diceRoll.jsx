@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaRegTimesCircle } from 'react-icons/fa'
-import validator from '../../../validator'
+import validator from '../../../../validator'
 import '../extra.css'
 
 export default function CustomDiceRoll(props){

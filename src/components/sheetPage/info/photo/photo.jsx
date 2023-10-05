@@ -1,5 +1,5 @@
 import './photo.css'
-import Photo from '../../../imagens/fotoNaoDefinida.png'
+import Photo from '../../../../imagens/fotoNaoDefinida.png'
 import { useEffect, useState } from 'react';
 
 export default function Foto(props){

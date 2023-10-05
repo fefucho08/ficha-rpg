@@ -1,4 +1,4 @@
-import D20 from '../../../imagens/d20.png'
+import D20 from '../../../../imagens/d20.png'
 import '../tests.css'
 
 function SingularAttribute({attribute, roll, currentCharacter, change, characters}){

@@ -1,5 +1,5 @@
 import {AiOutlineUserAdd} from "react-icons/ai"
-import character from '../../character.json'
+import character from '../../../character.json'
 import toast from "react-hot-toast"
 import './navigation.css'
 

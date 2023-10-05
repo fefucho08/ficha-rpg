@@ -1,5 +1,5 @@
 import '../tests.css'
-import D20 from '../../../imagens/d20.png'
+import D20 from '../../../../imagens/d20.png'
 
 function SingularExpertise({expertiseName, roll, expertise, attributes, currentCharacter, change, characters}){
 
