@@ -24,17 +24,6 @@ export default function Header(props){
         
     }
 
-    const resetCharacter = () => {
-        const resetedCharacter = JSON.parse(JSON.stringify(character));
-        resetedCharacter.id = characters[currentCharacter].id;
-        setCharacters(characters.map(character => {
-            if(character.id === currentCharacter)
-                return {...resetedCharacter}
-            else
-                return character
-        }))
-    }
-
     return(
         <div className="container" style={{textAlign: 'center'}}>
             <img
@@ -43,9 +32,6 @@ export default function Header(props){
                 alt='Logo da Ordo Realitas'
             />
             <h1>Ficha do Investigador</h1>
-            <button onClick={() => resetCharacter()}>
-                Resetar ficha
-            </button>
             <button onClick={() => removeCharacter()}>
                 Remover Personagem
             </button>

@@ -55,7 +55,7 @@ export default function Weapons({items, setItems, weapons, setWeapons}){
     const addWeapon = (weapon, space, test, damage, range, critical) => {
 
         const newWeapon = {
-            id: Math.random(),
+            id: crypto.randomUUID(),
             item: weapon,
             space: space,
             test: test,

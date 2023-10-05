@@ -1,0 +1,25 @@
+.characterCard {
+    width: fit-content;
+    max-width: 30%;
+    background-color: transparent;
+    margin: 0 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #fff;
+    text-decoration: none;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.characterCard h3 {
+    text-align: left;
+}
+
+.characterCard span:nth-child(even){
+    font-weight: bold;
+}
+
+.characterCard span:nth-child(odd){
+    font-size: 80%;
+    margin-right: 30px;
+}

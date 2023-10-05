@@ -15,7 +15,7 @@ export default function NavBar(){
                     <BiSolidUserAccount/>
                     Personagens
                 </Link>
-                <Link to="/mestre">
+                <Link to="/gamemaster">
                     <GiDiceTwentyFacesOne/>
                     Área do Mestre
                 </Link>

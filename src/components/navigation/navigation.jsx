@@ -23,13 +23,13 @@ export default function CharactersNavigation(props) {
                 {characters.map(character => {
                     if(character.id === currentCharacter)
                         return(
-                            <div className="characterTab current" onClick={() => setCurrentCharacter(character.id)}>
+                            <div className="characterTab current" onClick={() => setCurrentCharacter(character.id)} key={character.id}>
                                 {character.name !== "" ? character.name : "Novo Personagem"}
                             </div>
                         )
                     else
                         return(
-                            <div className="characterTab" onClick={() => setCurrentCharacter(character.id)}>
+                            <div className="characterTab" onClick={() => setCurrentCharacter(character.id)} key={character.id}>
                                 {character.name !== "" ? character.name : "Novo Personagem"}
                             </div>
                         )

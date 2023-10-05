@@ -50,7 +50,7 @@ export default function Items({items, setItems, weapons, setWeapons, characters,
     const addItem = (item, space) => {
         
         const newItem = {
-            id: Math.random(),
+            id: crypto.randomUUID(),
             item: item,
             space: space
         }
