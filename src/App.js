@@ -1,94 +1,57 @@
-import './App.css';
-import Header from './components/header/header';
-import Info from './components/info/info'
-import Tests from './components/tests/tests';
-import Inventory from './components/inventory/inventory';
-import Rituals from './components/rituals/rituals';
-import Extra from './components/extra/extra';
-import CharactersNavigation from './components/navigation/navigation';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import character from './character.json';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NavBar from './layout/navbar';
+import Home from './pages/home';
+import Characters from './pages/characters';
+import Sheet from './pages/sheet';
+import GameMaster from './pages/gm';
 
 function App() {
 
   const [characters, setCharacters] = useState([])
   const [currentCharacter, setCurrentCharacter] = useState(0)
-  
+  const [loadedData, hasLoadedData] = useState(false)
+
+
   useEffect(() => {
-    if(localStorage.getItem("charactersArr") === null){
-      const inicialCharacter = JSON.parse(JSON.stringify(character));
-      setCharacters([inicialCharacter])
-    }
-    else {
-      const localArr = localStorage.getItem("charactersArr")
-      const charactersArr = JSON.parse(localArr);
+    const localArr = localStorage.getItem("charactersArr")
+    if(localArr !== null){
+      const charactersArr = JSON.parse(localArr)
       setCharacters(charactersArr)
     }
+    hasLoadedData(true)
   }, [])
 
-  useEffect(() => {
-    if(characters.length > 0)
-      localStorage.setItem("charactersArr", JSON.stringify(characters))
-  }, [characters])
-
-  function change(param, content, id){
-    setCharacters(characters.map(character => {
-      if(character.id === id){
-        return {...character, [param]: content}
-      }
-      else {
-        return character
-      }
-    }))
-  }
-
-  return (characters.length > 0) ? (
-
-      <div className="App">
-        <Toaster position='top-center'/>
-        <CharactersNavigation
-          currentCharacter = {currentCharacter}
-          setCurrentCharacter = {setCurrentCharacter}
-          characters = {characters}
-          setCharacters = {setCharacters}
-        />
-        <div className='sheetContent'>
-          <Header 
+  return loadedData ? (
+    <Router>
+      <Toaster position='top-center'/>
+      <NavBar />
+      <Routes>
+        <Route exact path='/' element={
+          <Home characters = {characters}/>
+        }/>
+        <Route path='/characters' element={
+          <Characters 
+            characters = {characters}
             currentCharacter = {currentCharacter}
             setCurrentCharacter = {setCurrentCharacter}
-            characters = {characters}
+          />
+        }/>
+        <Route path='/sheet' element={
+          <Sheet 
+            characters = {characters} 
             setCharacters = {setCharacters}
+            currentCharacter = {currentCharacter}
+            setCurrentCharacter = {setCurrentCharacter}
           />
-          <Info 
-            currentCharacter = {currentCharacter} 
-            change = {change} 
-            characters = {characters}
-          />
-          <Tests
-            currentCharacter = {currentCharacter} 
-            change = {change} 
-            characters = {characters}
-          />
-          <Inventory 
-            currentCharacter = {currentCharacter} 
-            change = {change} 
-            characters = {characters}
-            setCharacters = {setCharacters}
-          />
-          <Rituals
-            currentCharacter = {currentCharacter} 
-            change = {change} 
-            characters = {characters}
-          />
-          <Extra
-            currentCharacter = {currentCharacter} 
-            change = {change} 
-            characters = {characters}
-          />
-        </div>
-      </div>
-    ) : "";
+        }/>
+        <Route path='/gamemaster' element={
+          <GameMaster />
+        }/>
+      </Routes>
+    </Router>
+  ) : ""
 
 }
 

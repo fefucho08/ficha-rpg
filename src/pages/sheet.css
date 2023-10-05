@@ -1,0 +1,12 @@
+.sheet {
+    margin: 0 auto;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.sheetContent {
+    border: 1px solid #fff;
+    border-top: 0;
+    padding: 10px;
+    padding-top: 20px;
+}
