@@ -26,10 +26,6 @@ export default function Sheet(props) {
           localStorage.setItem("charactersArr", JSON.stringify(characters))
       }, [characters])
     
-      useEffect(() => {
-        console.log(characters)
-      }, [characters])
-    
       function change(param, content, id){
         setCharacters(characters.map(character => {
           if(character.id === id){
