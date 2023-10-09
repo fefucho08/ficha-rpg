@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
 import './navbar.css'
 import desconjuracao from '../imagens/desconjuracao.png'
-import {BiSolidUserAccount} from 'react-icons/bi'
+import {BiSolidUserAccount, BiLogIn, BiLogOut} from 'react-icons/bi'
 import {GiDiceTwentyFacesOne} from 'react-icons/gi'
 
 export default function NavBar(){
+
+    const userId = sessionStorage.getItem("userId")
+
     return(
         <nav className="navBar">
             <Link to="/">
@@ -19,6 +22,17 @@ export default function NavBar(){
                     <GiDiceTwentyFacesOne/>
                     Área do Mestre
                 </Link>
+                {userId ? 
+                <Link to="/">
+                    <BiLogOut/>
+                    Sair
+                </Link>
+                :
+                <Link to='/login'>
+                    <BiLogIn/>
+                    Entrar
+                </Link>
+                }
             </span>
         </nav>
     )

@@ -11,7 +11,7 @@ export default function Home(props){
                 <p>Um site feito por fã para a criação de fichas no sistema Ordem Paranormal RPG</p>
             </div>
             <div className="homeOptions">
-                {(props.characters.length > 0 ) ? (
+                {(props.characters?.length) ? (
                     <>
                         <AcessButton text="Meus Personagens" to="/characters"/>
                         <AcessButton text="Minhas campanhas" to="/gamemaster"/>
