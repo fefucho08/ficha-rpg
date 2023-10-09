@@ -30,7 +30,7 @@
     background-color: #ffffff30;
 }
 
-.navBar a[href="/"]:hover {
+.navBar a[href="/"]:first-of-type:hover {
     background-color: transparent;
 }
 
@@ -45,3 +45,7 @@
     font-size: 1.3em;
 }
 
+.navBar button {
+    border: none;
+    background-color: transparent;
+}

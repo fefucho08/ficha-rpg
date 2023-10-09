@@ -4,7 +4,7 @@ import Login from "../components/login/login"
 import './login.css'
 
 export default function LoginPage(){
-    const [register, isRegister] = useState(true)
+    const [register, isRegister] = useState(false)
 
     return(
         <div className="loginContainer">

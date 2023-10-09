@@ -50,6 +50,7 @@ export default function Login({isRegister}){
             setUsernameInput("")
             setPasswordInput("")
             navigate("/")
+            window.location.reload()
         }   
         else
             toast.error("Usuário ou senha incorreto")
