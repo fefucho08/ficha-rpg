@@ -15,7 +15,7 @@ export default function LastCharacter(props){
                 <span>Classe: </span>
                 <span>{classe ? classe : "Sem classe"}</span>
                 <span>Origem: </span>
-                <span>{origin ? classe : "Sem origem"}</span>
+                <span>{origin ? origin : "Sem origem"}</span>
             </div>
         </Link>
     )
