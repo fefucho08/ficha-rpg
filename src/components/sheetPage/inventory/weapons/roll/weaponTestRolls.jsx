@@ -1,111 +1,152 @@
-import { useEffect, useState } from 'react';
-import { FaRegTimesCircle } from 'react-icons/fa';
-import validator from '../../../../../validator'
+import { useEffect, useState, useRef } from "react";
+import { FaRegTimesCircle } from "react-icons/fa";
+import validator from "../../../../../validator";
 
-export default function TestWeapon({test, isTesting, name, damage, critical, setTestName, setDamage, isRollingDamage}){
-
-    const [valid, isValid] = useState(true)
+export default function TestWeapon({
+    test,
+    isTesting,
+    name,
+    damage,
+    critical,
+    setTestName,
+    setDamage,
+    isRollingDamage,
+}) {
+    const [valid, isValid] = useState(true);
 
     const validation = validator(test);
 
     useEffect(() => {
-        if(!validation){
-            isValid(false)
-            isTesting(false)
+        if (!validation) {
+            isValid(false);
+            isTesting(false);
         }
-    }, [isTesting, validation])
+    }, [isTesting, validation]);
 
-    return (valid) ? 
-        (<TestWeaponRoll
-        name={name}
-        multiplier={validation.multiplier}
-        dice={validation.dice}
-        bonus={validation.bonus}
-        isTesting={isTesting}
-        damage={damage}
-        critical={critical}
-        setTestName={setTestName}
-        setDamage={setDamage}
-        isRollingDamage={isRollingDamage}
-        />) : ""
+    return valid ? (
+        <TestWeaponRoll
+            name={name}
+            multiplier={validation.multiplier}
+            dice={validation.dice}
+            bonus={validation.bonus}
+            isTesting={isTesting}
+            damage={damage}
+            critical={critical}
+            setTestName={setTestName}
+            setDamage={setDamage}
+            isRollingDamage={isRollingDamage}
+        />
+    ) : (
+        ""
+    );
 }
 
+function TestWeaponRoll({
+    name,
+    multiplier,
+    dice,
+    bonus,
+    isTesting,
+    damage,
+    critical,
+    isRollingDamage,
+    setTestName,
+    setDamage,
+}) {
+    const [result, setResult] = useState(0);
+    const [rolls, setRolls] = useState([]);
 
-function TestWeaponRoll({name, multiplier, dice, bonus, isTesting, damage, critical, isRollingDamage, setTestName, setDamage}){
+    useEffect(() => {
+        let newRolls = [];
+        let result = 0;
 
-    let rolls = [];
+        for (let i = 0; i < multiplier; i++) {
+            let newRoll = Math.floor(Math.random() * dice) + 1;
+            newRolls.push(newRoll);
+            result += newRoll;
+        }
 
-    for(let i = 0; i < multiplier; i++){
-        let newRoll = Math.floor(Math.random()*dice) + 1
-        rolls.push(newRoll)
-    }
+        result = Math.max(...newRolls) + bonus;
 
-    let result = Math.max(...rolls) + bonus;
+        setResult(result);
+        setRolls(newRolls);
+    }, [bonus, dice, multiplier]);
 
     return (
         <div className="popUp testWeapon">
             <div>
                 <span onClick={() => isTesting(false)}>
-                    <FaRegTimesCircle/>
+                    <FaRegTimesCircle />
                 </span>
                 <h2>Teste de {name}</h2>
                 <h3>{result}</h3>
                 <p>Seus resultados foram: {rolls.join(", ")}</p>
             </div>
-            <div className='options'>
-                <button onClick={() => {
-                setTestName(name)
-                setDamage(damage)
-                isTesting(false)
-                isRollingDamage(true)}}
-                >Rolar Dano</button>
-                <button onClick={() => {
-                setTestName(name)
-                setDamage(critical)
-                isTesting(false)
-                isRollingDamage(true)
-                }}>Rolar Crítico</button>
+            <div className="options">
+                <button
+                    onClick={() => {
+                        setTestName(name);
+                        setDamage(damage);
+                        isTesting(false);
+                        isRollingDamage(true);
+                    }}
+                >
+                    Rolar Dano
+                </button>
+                <button
+                    onClick={() => {
+                        setTestName(name);
+                        setDamage(critical);
+                        isTesting(false);
+                        isRollingDamage(true);
+                    }}
+                >
+                    Rolar Crítico
+                </button>
             </div>
-
         </div>
-    )
+    );
 }
 
-export function DamageRoll({name, damage, isRollingDamage}){
+export function DamageRoll({ name, damage, isRollingDamage }) {
+    const [valid, isValid] = useState(false);
+    const [result, setResult] = useState(0);
+    const [rolls, setRolls] = useState([]);
 
-    const [valid, isValid] = useState(false)
-
-    const validation = validator(damage);
+    const validation = useRef(validator(damage));
 
     useEffect(() => {
-        if(!validation){
-            isValid(false)
-        } else
-            isValid(true)
-    }, [validation])
+        if (!validation.current) {
+            isValid(false);
+        } else {
+            isValid(true);
+            let newRolls = [];
+            let result = 0;
 
-    let rolls = [];
+            for (let i = 0; i < validation.current.multiplier; i++) {
+                let newRoll =
+                    Math.floor(Math.random() * validation.current.dice) + 1;
+                newRolls.push(newRoll);
+                result += newRoll;
+            }
 
-    for(let i = 0; i < validation.multiplier; i++){
-        let newRoll = Math.floor(Math.random()*validation.dice)+1
-        rolls.push(newRoll)
-    }
+            result += validation.current.bonus;
 
-    let result = 0;
-
-    for(let i = 0; i < rolls.length; i++)
-        result += rolls[i]
-
-    result += validation.bonus
+            setResult(result);
+            setRolls(newRolls);
+        }
+    }, [damage]);
 
     return valid ? (
         <div className="popUp">
             <span onClick={() => isRollingDamage(false)}>
-                <FaRegTimesCircle/>
+                <FaRegTimesCircle />
             </span>
             <h2>Rolagem de Dano de {name}</h2>
             <h3>{result}</h3>
             <p>Seus resultados foram: {rolls.join(", ")}</p>
         </div>
-    ) : ""
+    ) : (
+        ""
+    );
 }
