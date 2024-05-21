@@ -1,58 +1,62 @@
-import { FaRegTimesCircle } from 'react-icons/fa';
-import '../tests.css'
+import { FaRegTimesCircle } from "react-icons/fa";
+import "../tests.css";
+import { useState, useEffect } from "react";
 
-let result;
-var rolls = [];
-
-function Pop({setTrigger, name}){
-
+function Pop({ setTrigger, name, result, rolls }) {
     return (
         <div className="popUp">
             <span
-            onClick={() => {
-                setTrigger(false)
-            }}
+                onClick={() => {
+                    setTrigger(false);
+                }}
             >
-                <FaRegTimesCircle/>
+                <FaRegTimesCircle />
             </span>
             <h2>Rolagem de {name}</h2>
             <h3>{result}</h3>
             <p>Seus resultados foram: {rolls.join(", ")}</p>
         </div>
-    )
+    );
 }
 
+export default function TestRoll({ trigger, setTrigger, name, value, bonus }) {
+    const [result, setResult] = useState(0);
+    const [rolls, setRolls] = useState([]);
 
-export default function TestRoll({trigger, setTrigger, name, value, bonus}){
+    useEffect(() => {
+        if (trigger) {
+            let newRolls = [];
+            let result;
 
-        if(bonus === undefined){
-            bonus = 0;
-        }
+            let bonusValue = bonus === undefined ? 0 : bonus;
 
-        rolls = [];
-
-        if(value > 0){
-
-            for(let i = 0; i < value; i ++){
-                let roll = Math.floor(Math.random() * 20) + 1
-                rolls.push(roll);
+            if (value > 0) {
+                for (let i = 0; i < value; i++) {
+                    let roll = Math.floor(Math.random() * 20) + 1;
+                    newRolls.push(roll);
+                }
+                result = Math.max(...newRolls) + bonusValue;
+            } else {
+                for (let i = 0; i < 2; i++) {
+                    let roll = Math.floor(Math.random() * 20) + 1;
+                    newRolls.push(roll);
+                }
+                result = Math.min(...newRolls) + bonusValue;
             }
 
-            result = Math.max(...rolls)+bonus;
+            setResult(result);
+            setRolls(newRolls);
         }
-        else {
-            for(let i = 0; i < 2; i++){
-                let roll = Math.floor(Math.random() * 20) + 1
-                rolls.push(roll)
-            }
+    }, [trigger, value, bonus]);
 
-            result = Math.min(...rolls)+bonus;
-        }
-
-    return (trigger) ? (
+    return trigger ? (
         <Pop
-        setTrigger={setTrigger}
-        name={name}
+            setTrigger={setTrigger}
+            name={name}
+            result={result}
+            rolls={rolls}
         />
-    ) : ""
+    ) : (
+        ""
+    );
 }

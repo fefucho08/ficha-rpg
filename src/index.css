@@ -1,134 +1,136 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-*{
-  font-family: 'Josefin Sans', 'sans-serif';
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+* {
+    font-family: "Josefin Sans", Arial;
 }
 
-input, label {
-  color: #ffffff;
+input,
+label {
+    color: #ffffff;
 }
 
 body {
-  margin: 0;
-  font-family: 'Josefin Sans', 'sans-serif';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-  position: relative;
+    margin: 0;
+    font-family: "Josefin Sans", "sans-serif";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: black;
+    position: relative;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
-.popUp{
-  position: fixed;
-  z-index: 1000;
-  width: 400px;
-  height: fit-content;
-  border-radius: 5px;
-  background-color: #ffffff;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  text-align: center;
-  color: #000000;
-  padding: 20px;
-  box-shadow: #fff 0px 0px 15px;
+.popUp {
+    position: fixed;
+    z-index: 1000;
+    width: 400px;
+    height: fit-content;
+    border-radius: 5px;
+    background-color: #ffffff;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    color: #000000;
+    padding: 20px;
+    box-shadow: #fff 0px 0px 15px;
 }
 
 .popUp h2 {
-  clear: both;
+    clear: both;
 }
 
-.popUp span{
-  color: #000000;
-  cursor: pointer;
-  float: right;
+.popUp span {
+    color: #000000;
+    cursor: pointer;
+    float: right;
 }
 
 .popUp span svg {
-  fill: #000000 !important;
+    fill: #000000 !important;
 }
 
-.deletePop li{
-  text-align: start;
-  margin-bottom: 5px;
-  list-style: none;
-  line-height: 20px;
+.deletePop li {
+    text-align: start;
+    margin-bottom: 5px;
+    list-style: none;
+    line-height: 20px;
 }
 
 @font-face {
-  font-family: 'Sigilos';
-  src: url(../src/fonts/SigilosDoOutroLado-Regular.ttf);
+    font-family: "Sigilos";
+    src: url(../src/fonts/SigilosDoOutroLado-Regular.ttf);
 }
 
 .deletePop li::before {
-  content: 'i';
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  vertical-align: middle;
-  font-size: 25px;
-  font-family: 'Sigilos';
-  text-align: center;
+    content: "i";
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+    font-size: 25px;
+    font-family: "Sigilos";
+    text-align: center;
 }
 
-.deletePop li span svg{
-  float: right;
+.deletePop li span svg {
+    float: right;
 }
 
 .maxContainer {
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-between;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .addButton {
-  background-color: transparent;
-  border: 1px solid #cacaca;
-  padding: 5px;
-  cursor: pointer;
-  color: #fff;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  transition: 0.5s linear;
+    background-color: transparent;
+    border: 1px solid #cacaca;
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s linear;
 }
 
 .addButton:hover,
 .removeButton:hover {
-  opacity: 0.8;
-  scale: 1.05;
+    opacity: 0.8;
+    scale: 1.05;
 }
 
 .removeButton {
-  background-color: transparent;
-  border: 1px solid #cacaca;
-  padding: 5px;
-  cursor: pointer;
-  color: #fff;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  transition: 0.5s linear;
-  margin: 0 5px;
-  box-sizing: border-box;
+    background-color: transparent;
+    border: 1px solid #cacaca;
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s linear;
+    margin: 0 5px;
+    box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
+    width: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ffffff;
-  border-radius: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #ffffff5e;
-  border-radius: 10px;
+    background-color: #ffffff5e;
+    border-radius: 10px;
 }

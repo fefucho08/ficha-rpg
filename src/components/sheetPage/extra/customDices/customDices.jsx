@@ -1,23 +1,35 @@
-import { useEffect, useState } from 'react'
-import {BiSend} from 'react-icons/bi'
-import D4 from '../../../../imagens/d4.png'
-import D6 from '../../../../imagens/d6.png'
-import D8 from '../../../../imagens/d8.png'
-import D10 from '../../../../imagens/d10.png'
-import D12 from '../../../../imagens/d12.png'
-import D20 from '../../../../imagens/d20.png'
-import CustomDiceRoll from './diceRoll'
-import AddNewDice from './addDice'
-import RemoveDices from './removeDice'
-import '../extra.css'
+import { useContext, useEffect, useState, useRef } from "react";
+import { BiSend } from "react-icons/bi";
+import D4 from "../../../../imagens/d4.png";
+import D6 from "../../../../imagens/d6.png";
+import D8 from "../../../../imagens/d8.png";
+import D10 from "../../../../imagens/d10.png";
+import D12 from "../../../../imagens/d12.png";
+import D20 from "../../../../imagens/d20.png";
+import CustomDiceRoll from "./diceRoll";
+import AddNewDice from "./addDice";
+import RemoveDices from "./removeDice";
+import "../extra.css";
+import {
+    ChangeContext,
+    CharactersContext,
+} from "../../../../contexts/contexts";
 
-function SingularDice(props){
-
-    const {name, symbol, value, isDamage, isRolling, setRollName, setRollValue, setIsDamage} = props
+function SingularDice(props) {
+    const {
+        name,
+        symbol,
+        value,
+        isDamage,
+        isRolling,
+        setRollName,
+        setRollValue,
+        setIsDamage,
+    } = props;
 
     var diceSymbol;
 
-    switch(symbol){
+    switch (symbol) {
         case "D4":
             diceSymbol = D4;
             break;
@@ -41,61 +53,74 @@ function SingularDice(props){
     }
 
     const rollDice = () => {
-        setRollName(name)
-        setRollValue(value)
-        setIsDamage(isDamage)
-        isRolling(true)
-    }
+        setRollName(name);
+        setRollValue(value);
+        setIsDamage(isDamage);
+        isRolling(true);
+    };
 
-    return(
-        <div className='savedDice' onClick={() => rollDice()}>
-            <img src={diceSymbol} alt='Dice Symbol'/>
+    return (
+        <div className="savedDice" onClick={() => rollDice()}>
+            <img src={diceSymbol} alt="Dice Symbol" />
             <p>{name}</p>
         </div>
-    )
+    );
 }
 
-export default function CustomDices(props){
+export default function CustomDices() {
+    const { currentCharacter, characters } = useContext(CharactersContext);
+    const charactersRef = useRef(characters);
+    const change = useContext(ChangeContext);
 
-    const {currentCharacter, change, characters} = props
+    const [savedDices, setSavedDices] = useState(
+        characters[currentCharacter].customDices
+    );
+    const [fastDice, setFastDice] = useState("");
 
-    const [savedDices, setSavedDices] = useState(characters[currentCharacter].customDices);
-    const [fastDice, setFastDice] = useState("")
+    const [rolling, isRolling] = useState(false);
+    const [adding, isAdding] = useState(false);
+    const [deleting, isDeletingDices] = useState(false);
 
-    const [rolling, isRolling] = useState(false)
-    const [adding, isAdding] = useState(false)
-    const [deleting, isDeletingDices] = useState(false)
-
-    const [rollValue, setRollValue] = useState("")
-    const [rollName, setRollName] = useState("")
-    const [isDamage, setIsDamage] = useState(false)
+    const [rollValue, setRollValue] = useState("");
+    const [rollName, setRollName] = useState("");
+    const [isDamage, setIsDamage] = useState(false);
 
     const rollFastDice = () => {
-        setRollName("Dado Rápido")
-        setRollValue(fastDice)
-        isRolling(true)
-        setFastDice("")
-    }
-    
-    useEffect(() => {
-        change("customDices", savedDices, currentCharacter)
-    }, [savedDices])
+        setRollName("Dado Rápido");
+        setRollValue(fastDice);
+        isRolling(true);
+        setFastDice("");
+    };
 
     useEffect(() => {
-        setSavedDices(characters[currentCharacter].customDices)
-    }, [currentCharacter])
+        change("customDices", savedDices, currentCharacter);
+    }, [savedDices, change, currentCharacter]);
 
-    return(
+    useEffect(() => {
+        setSavedDices(charactersRef.current[currentCharacter].customDices);
+    }, [currentCharacter]);
+
+    return (
         <>
             <div className="extraInnerContainer">
                 <div className="customDicesHeader">
                     <h2>Dados Personalizados</h2>
-                    <button className='addButton' onClick={() => isAdding(true)}>+</button>
-                    <div className="removeButton" onClick={() => isDeletingDices(true)}>-</div>
+                    <button
+                        className="addButton"
+                        onClick={() => isAdding(true)}
+                    >
+                        +
+                    </button>
+                    <div
+                        className="removeButton"
+                        onClick={() => isDeletingDices(true)}
+                    >
+                        -
+                    </div>
                 </div>
                 <div className="savedCustomDices">
                     {savedDices.map((dice) => (
-                        <SingularDice 
+                        <SingularDice
                             name={dice.name}
                             symbol={dice.symbol}
                             value={dice.value}
@@ -109,39 +134,39 @@ export default function CustomDices(props){
                     ))}
                 </div>
                 <div className="fastDice">
-                    <input 
-                        placeholder='Dado rápido (Ex: 2d20+5)' 
-                        type='text' 
-                        value={fastDice} 
+                    <input
+                        placeholder="Dado rápido (Ex: 2d20+5)"
+                        type="text"
+                        value={fastDice}
                         onChange={(e) => setFastDice(e.target.value)}
                     />
                     <button onClick={() => rollFastDice()}>
-                        <BiSend/>
+                        <BiSend />
                     </button>
                 </div>
             </div>
-            {rolling && 
+            {rolling && (
                 <CustomDiceRoll
-                    value = {rollValue}
-                    name = {rollName}
-                    isDamage = {isDamage}
-                    isRolling = {isRolling}
+                    value={rollValue}
+                    name={rollName}
+                    isDamage={isDamage}
+                    isRolling={isRolling}
                 />
-            }
-            {adding &&
+            )}
+            {adding && (
                 <AddNewDice
-                    savedDices = {savedDices}
-                    setSavedDices = {setSavedDices}
-                    isAdding = {isAdding}
+                    savedDices={savedDices}
+                    setSavedDices={setSavedDices}
+                    isAdding={isAdding}
                 />
-            }
-            {deleting && 
+            )}
+            {deleting && (
                 <RemoveDices
-                    savedDices = {savedDices}
-                    setSavedDices = {setSavedDices}
-                    isDeletingDices = {isDeletingDices}
+                    savedDices={savedDices}
+                    setSavedDices={setSavedDices}
+                    isDeletingDices={isDeletingDices}
                 />
-            }
+            )}
         </>
-    )
+    );
 }
