@@ -17,7 +17,7 @@
     margin: 0 auto;
 }
 
-.picture:hover{
+.picture:hover {
     cursor: pointer;
     opacity: 0.8;
 }
@@ -29,4 +29,10 @@
 #name {
     display: block;
     text-align: center;
+}
+
+@media (max-width: 750px) {
+    .photoContainer {
+        order: -1;
+    }
 }

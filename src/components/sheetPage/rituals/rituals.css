@@ -25,24 +25,6 @@
     width: 100%;
 }
 
-/* .ritualsContainerHeader button {
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.5s linear;
-    margin: 0 5px;
-}
-
-.ritualsContainerHeader button:hover {
-    scale: 1.05;
-    opacity: 0.8;
-} */
-
 .ritualBox {
     width: 45%;
     padding: 10px;
@@ -75,7 +57,6 @@
 .ritualBox:hover img {
     filter: invert(1);
 }
-
 
 .ritualHeader {
     display: flex;
@@ -125,11 +106,10 @@
     font-weight: 300;
 }
 
-
 .ritualPopUp {
     align-items: center;
 }
-.ritualPopUp label{
+.ritualPopUp label {
     color: #000;
     font-size: small;
 }
@@ -201,4 +181,21 @@ option {
 .ritualPopUp button:hover {
     scale: 1.03;
     background-color: #d4d4d4;
+}
+
+@media (max-width: 750px) {
+    .ritualsContainer {
+        width: 95%;
+        border: none;
+        margin: 0 auto;
+    }
+    .ritualBox {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .ritualDescription {
+        width: 100%;
+    }
 }

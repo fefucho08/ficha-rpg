@@ -17,6 +17,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #000;
 }
 
 .invHeader p {
@@ -46,7 +49,6 @@
     cursor: pointer;
 }
 
-
 .space {
     background-color: transparent;
     border: none;
@@ -55,8 +57,7 @@
     outline: none;
 }
 
-
-.addItem div{
+.addItem div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -89,7 +90,6 @@
     background-color: #d4d4d4;
 }
 
-
 .fillWarning {
     width: 60%;
     color: #fff;
@@ -100,7 +100,8 @@
     border-radius: 10px;
 }
 
-.fillWarning p, .fillWarning svg {
+.fillWarning p,
+.fillWarning svg {
     display: inline;
 }
 
@@ -111,7 +112,6 @@
     margin-top: 20px;
     padding: 5px 20px;
 }
-
 
 .weaponsHeader input {
     background-color: transparent;
@@ -143,7 +143,7 @@
 }
 
 .weapon input,
-.weapon span{
+.weapon span {
     background-color: transparent;
     border: none;
     outline: none;
@@ -178,7 +178,7 @@
     color: #000;
 }
 
-.testInput:hover, 
+.testInput:hover,
 .damageInput:hover {
     background-color: #fff;
     color: #000;
@@ -208,7 +208,7 @@
     display: flex;
 }
 
-.options button{
+.options button {
     width: 50%;
     padding: 10px;
     border: 0.5px solid #dddddd;
@@ -228,4 +228,11 @@
 
 .options button:last-of-type {
     border-bottom-right-radius: 5px;
+}
+
+@media (max-width: 750px) {
+    .containerInv {
+        width: 95%;
+        border: none;
+    }
 }

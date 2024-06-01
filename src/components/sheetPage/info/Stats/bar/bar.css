@@ -1,4 +1,4 @@
-.bar{
+.bar {
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -18,24 +18,26 @@
     color: #ffffff;
 }
 
-#PV{
-    background-color: #BF5858;
+#PV {
+    background-color: #bf5858;
 }
 
-#San{
+#San {
     background-color: #324474;
 }
 
-#PE{
+#PE {
     background-color: #00571d;
 }
 
-.status{
+.status {
     position: absolute;
     z-index: 1;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
 }
 
 .bar input {

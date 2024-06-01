@@ -1,3 +1,4 @@
+import ReactInputMask from "react-input-mask";
 import {
     ChangeContext,
     CharactersContext,
@@ -5,7 +6,7 @@ import {
 import "../info.css";
 import { useContext, useEffect, useState } from "react";
 
-function Dados({ info, id, tipo, attribute }) {
+function Dados({ info, id, attribute, mask }) {
     const { currentCharacter, characters } = useContext(CharactersContext);
     const change = useContext(ChangeContext);
     const [classe, setClasse] = useState("notFilled");
@@ -24,13 +25,14 @@ function Dados({ info, id, tipo, attribute }) {
     return (
         <div className="inputContainer">
             <label htmlFor={id}>{info}: </label>
-            <input
+            <ReactInputMask
                 autoComplete="off"
                 placeholder={info}
                 id={id}
-                type={tipo}
                 className={classe}
                 value={characters[currentCharacter][attribute]}
+                mask={mask}
+                maskChar={null}
                 onChange={(e) => {
                     changeClasse(e.target.value);
                     change(attribute, e.target.value, currentCharacter);
@@ -43,10 +45,16 @@ function Dados({ info, id, tipo, attribute }) {
 export default function Personal() {
     return (
         <div className="box" id="personal">
-            <Dados info="Jogador" id="jogador" tipo="text" attribute="player" />
-            <Dados info="Origem" id="origem" tipo="text" attribute="origin" />
-            <Dados info="Classe" id="classe" tipo="text" attribute="class" />
-            <Dados info="Nex" id="nex" tipo="number" attribute="nex" />
+            <Dados info="Jogador" id="jogador" attribute="player" />
+            <Dados info="Origem" id="origem" attribute="origin" />
+            <Dados info="Classe" id="classe" attribute="class" />
+            <Dados
+                info="Nex"
+                id="nex"
+                tipo="number"
+                attribute="nex"
+                mask="99%"
+            />
         </div>
     );
 }

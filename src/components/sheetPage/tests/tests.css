@@ -7,14 +7,18 @@
     justify-content: center;
     padding: 10px;
     overflow-y: scroll;
+    padding-top: 0;
 }
 
 .containerAtt h2 {
     color: #fff;
     width: 100%;
     text-align: center;
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    padding: 1rem;
 }
-
 
 .boxAtt {
     color: #fff;
@@ -53,13 +57,13 @@
 
 .boxAtt:hover .d20 {
     filter: invert(100%);
-    animation-name: spin; 
+    animation-name: spin;
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
 
-.boxAtt input{
+.boxAtt input {
     background-color: transparent;
     border: none;
     outline: none;
@@ -117,13 +121,13 @@
 
 .boxExp:hover .d20 {
     filter: invert(100%);
-    animation-name: spin; 
+    animation-name: spin;
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
 
-.boxExp select{
+.boxExp select {
     appearance: none;
     background-color: transparent;
     border: none;
@@ -157,4 +161,17 @@
 
 .critical {
     color: green;
+}
+
+@media (max-width: 750px) {
+    .containerAtt {
+        width: 100%;
+        margin-top: 5%;
+        border: none;
+        padding: 0;
+        position: relative;
+    }
+    .containerAtt:first-of-type {
+        height: fit-content;
+    }
 }
