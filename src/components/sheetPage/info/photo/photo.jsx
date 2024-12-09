@@ -12,46 +12,47 @@ export default function Foto() {
     const [classe, setClasse] = useState("notFilled");
     const [srcPhoto, setSrcPhoto] = useState(Photo);
 
+    // Atualiza a foto sempre que o personagem ou a foto dele mudar
     useEffect(() => {
-        if (characters[currentCharacter].photo !== "")
-            setSrcPhoto(JSON.parse(characters[currentCharacter].photo));
-        else setSrcPhoto(Photo);
-    }, [currentCharacter, characters]);
+        const character = characters[currentCharacter];
+        if (character && character.photo) {
+            setSrcPhoto(JSON.parse(character.photo));
+        } else {
+            setSrcPhoto(Photo);
+        }
+    }, [currentCharacter, characters[currentCharacter]?.photo]);
 
-    // MUDAR FOTO
-
+    // Mudar foto
     function setPhoto(e) {
-        const inputTarget = e.target;
-        const file = inputTarget.files[0];
+        const file = e.target.files[0];
 
         if (file) {
             const reader = new FileReader();
-
             reader.onload = (e) => {
-                const readerTarget = e.target;
-                setSrcPhoto(readerTarget.result);
-                change(
-                    "photo",
-                    JSON.stringify(reader.result),
-                    currentCharacter
-                );
+                const newPhoto = e.target.result;
+                setSrcPhoto(newPhoto);
+                change("photo", JSON.stringify(newPhoto), currentCharacter);
             };
-
             reader.readAsDataURL(file);
-        } else {
         }
     }
 
+    // Classe de preenchimento do nome
     useEffect(() => {
-        if (document.getElementById("name").value === "")
+        const character = characters[currentCharacter];
+        if (character && character.name) {
+            setClasse("filled");
+        } else {
             setClasse("notFilled");
-        else setClasse("filled");
-    }, [currentCharacter, characters]);
+        }
+    }, [currentCharacter, characters[currentCharacter]?.name]);
 
-    function changeClasse(content) {
-        if (content !== "") setClasse("filled");
-        else setClasse("notFilled");
+    function handleNameChange(e) {
+        const newName = e.target.value;
+        setClasse(newName ? "filled" : "notFilled");
+        change("name", newName, currentCharacter);
     }
+
     return (
         <div className="photoContainer">
             <label className="picture">
@@ -67,11 +68,8 @@ export default function Foto() {
             <input
                 type="text"
                 className={classe}
-                onChange={(e) => {
-                    changeClasse(e.target.value);
-                    change("name", e.target.value, currentCharacter);
-                }}
-                value={characters[currentCharacter].name}
+                onChange={handleNameChange}
+                value={characters[currentCharacter]?.name || ""}
                 id="name"
                 placeholder="Nome"
             />

@@ -14,31 +14,22 @@ export default function Inventory() {
     );
 
     useEffect(() => {
-        const updatedCharacters = characters.map((character) => {
-            if (character.id === currentCharacter) {
-                return {
-                    ...character,
-                    items: items,
-                };
-            }
-            return character;
-        });
-        setCharacters(updatedCharacters);
-    }, [items, characters, currentCharacter, setCharacters]);
+        if (
+            characters[currentCharacter].items !== items ||
+            characters[currentCharacter].weapons !== weapons
+        ) {
+            const updatedCharacter = {
+                ...characters[currentCharacter],
+                items,
+                weapons,
+            };
 
-    useEffect(() => {
-        const updatedCharacters = characters.map((character) => {
-            if (character.id === currentCharacter) {
-                return {
-                    ...character,
-                    items: items,
-                    weapons: weapons,
-                };
-            }
-            return character;
-        });
-        setCharacters(updatedCharacters);
-    }, [weapons, characters, currentCharacter, items, setCharacters]);
+            const updatedCharacters = [...characters];
+            updatedCharacters[currentCharacter] = updatedCharacter;
+
+            setCharacters(updatedCharacters);
+        }
+    }, [items, weapons, currentCharacter, characters, setCharacters]);
 
     useEffect(() => {
         setItems(characters[currentCharacter].items);

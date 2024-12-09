@@ -12,10 +12,10 @@ function Dados({ info, id, attribute, mask }) {
     const [classe, setClasse] = useState("notFilled");
 
     useEffect(() => {
-        if (characters[currentCharacter][attribute] === "")
-            setClasse("notFilled");
+        const value = characters[currentCharacter]?.[attribute] || "";
+        if (value === "") setClasse("notFilled");
         else setClasse("filled");
-    }, [currentCharacter, characters]);
+    }, [currentCharacter, characters[currentCharacter]?.[attribute]]);
 
     function changeClasse(content) {
         if (content !== "") setClasse("filled");
@@ -30,12 +30,13 @@ function Dados({ info, id, attribute, mask }) {
                 placeholder={info}
                 id={id}
                 className={classe}
-                value={characters[currentCharacter][attribute]}
+                value={characters[currentCharacter]?.[attribute] || ""}
                 mask={mask}
                 maskChar={null}
                 onChange={(e) => {
-                    changeClasse(e.target.value);
-                    change(attribute, e.target.value, currentCharacter);
+                    const newValue = e.target.value;
+                    changeClasse(newValue);
+                    change(attribute, newValue, currentCharacter);
                 }}
             />
         </div>

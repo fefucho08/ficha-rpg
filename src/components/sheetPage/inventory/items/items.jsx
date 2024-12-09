@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useMemo } from "react";
 import AddItem from "./addItem";
 import { FaTrashAlt } from "react-icons/fa";
 import {
@@ -12,7 +12,6 @@ function SingularItem({ name, space, deleteItem, id }) {
             <p>{name}</p>
             <div className="right">
                 <input type="number" value={space} readOnly className="space" />
-
                 <button onClick={() => deleteItem(id)}>
                     <FaTrashAlt style={{ clear: "both" }} />
                 </button>
@@ -25,26 +24,21 @@ export default function Items({ items, setItems, weapons, setWeapons }) {
     const { characters, currentCharacter } = useContext(CharactersContext);
     const change = useContext(ChangeContext);
 
-    const str = characters[currentCharacter].strength;
+    const str = characters[currentCharacter]?.strength || 0;
     const [trigger, setTrigger] = useState(false);
 
-    const [space, setSpaceUsed] = useState(0);
-    const [spaceMax, setSpaceMax] = useState(str * 5);
+    const spaceMax = useMemo(() => (str > 0 ? str * 5 : 2), [str]);
+    const spaceUsed = useMemo(() => {
+        return items.reduce((total, item) => total + parseInt(item.space), 0);
+    }, [items]);
 
     useEffect(() => {
-        setSpaceMax(str > 0 ? str * 5 : 2);
-    }, [str]);
-
-    useEffect(() => {
-        const sum = items.reduce(
-            (total, item) => total + parseInt(item.space),
-            0
-        );
-        setSpaceUsed(sum);
-
         change("items", items, currentCharacter);
+    }, [items, change, currentCharacter]);
+
+    useEffect(() => {
         change("weapons", weapons, currentCharacter);
-    }, [items, change, currentCharacter, weapons]);
+    }, [weapons, change, currentCharacter]);
 
     const addItem = (item, space) => {
         const newItem = {
@@ -52,17 +46,15 @@ export default function Items({ items, setItems, weapons, setWeapons }) {
             item: item,
             space: space,
         };
-
-        setItems([...items, newItem]);
+        setItems((prevItems) => [...prevItems, newItem]);
     };
 
     const deleteItem = (id) => {
         if (window.confirm("Deseja mesmo remover esse item?")) {
-            const newInv = items.filter((item) => item.id !== id);
-            const newWeapons = weapons.filter((weapon) => weapon.id !== id);
-
-            setItems(newInv);
-            setWeapons(newWeapons);
+            setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+            setWeapons((prevWeapons) =>
+                prevWeapons.filter((weapon) => weapon.id !== id)
+            );
         }
     };
 
@@ -71,7 +63,7 @@ export default function Items({ items, setItems, weapons, setWeapons }) {
             <div className="invHeader">
                 <h2>Inventário</h2>
                 <p style={{ color: "white" }}>
-                    {space}/{spaceMax}
+                    {spaceUsed}/{spaceMax}
                 </p>
                 <button onClick={() => setTrigger(true)} className="addButton">
                     +

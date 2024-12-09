@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useCallback } from "react";
 import Header from "../components/sheetPage/header/header";
 import Info from "../components/sheetPage/info/info";
 import Tests from "../components/sheetPage/tests/tests";
@@ -16,7 +16,10 @@ export default function Sheet() {
     const [loadedData, hasLoadedData] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem("charactersArr") === null) {
+        const storedCharacters = localStorage.getItem("charactersArr");
+        if (storedCharacters) {
+            setCharacters(JSON.parse(storedCharacters));
+        } else {
             const inicialCharacter = JSON.parse(JSON.stringify(character));
             setCharacters([inicialCharacter]);
         }
@@ -24,21 +27,29 @@ export default function Sheet() {
     }, [setCharacters]);
 
     useEffect(() => {
-        if (characters.length > 0)
-            localStorage.setItem("charactersArr", JSON.stringify(characters));
+        if (characters.length > 0) {
+            const timeout = setTimeout(() => {
+                localStorage.setItem(
+                    "charactersArr",
+                    JSON.stringify(characters)
+                );
+            }, 500); // Debouncing de 500ms
+            return () => clearTimeout(timeout);
+        }
     }, [characters]);
 
-    function change(param, content, id) {
-        setCharacters(
-            characters.map((character) => {
-                if (character.id === id) {
-                    return { ...character, [param]: content };
-                } else {
-                    return character;
-                }
-            })
-        );
-    }
+    const change = useCallback(
+        (param, content, id) => {
+            setCharacters((prevCharacters) =>
+                prevCharacters.map((character) =>
+                    character.id === id
+                        ? { ...character, [param]: content }
+                        : character
+                )
+            );
+        },
+        [setCharacters]
+    );
 
     return loadedData ? (
         <div className="sheet">

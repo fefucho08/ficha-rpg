@@ -1,15 +1,11 @@
 import "./home.css";
 import AcessButton from "../components/home/accessButton";
 import background from "../imagens/background.jpeg";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CharactersContext } from "../contexts/contexts";
 
 export default function Home() {
     const { characters } = useContext(CharactersContext);
-
-    useEffect(() => {
-        console.log(characters);
-    }, []);
 
     return (
         <div className="homeContainer">
